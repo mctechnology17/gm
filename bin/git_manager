@@ -1,5 +1,5 @@
 # ====================================================
-# FileName: git_manager.sh
+# FileName: git_manager
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
 # Date: 14.11.2021 22:30
@@ -249,11 +249,11 @@ elif [ "$git_continue" = "ali" ]; then
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_alias
   if [ "$git_alias" = "z" ]; then
-    [ -x "$(command -v zsh)" ] && echo "Add alias to ~/.zshrc $(echo "alias push='$PWD/git_manager.sh'" >> ~/.zshrc)"
+    [ -x "$(command -v zsh)" ] && echo "Add alias to ~/.zshrc $(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
   elif [ "$git_alias" = "b" ]; then
-    echo "Add alias to ~/.bashrc $(echo "alias push='$PWD/git_manager.sh'" >> ~/.bashrc)"
+    echo "Add alias to ~/.bashrc $(echo "alias push='$PWD/git_manager'" >> ~/.bashrc)"
   elif [ "$git_alias" = "f" ]; then
-    [ -x "$(command -v fish)" ] && echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/git_manager.sh"" >> ~/.config/fish/config.fish)"
+    [ -x "$(command -v fish)" ] && echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
