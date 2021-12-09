@@ -15,9 +15,9 @@ let s:is_mac = has('mac')
 let s:is_linux = has('unix')
 
 function! s:DefineHome()
-  if s:is_vim && (s:is_mac || s:is_linux)
+  if s:is_vim
     return resolve($HOME.'/.config/nvim/plugged/git_manager/bin')
-  elseif s:is_nvim && (s:is_mac || s:is_linux)
+  elseif s:is_nvim
     return resolve($HOME.'/.vim/plugged/git_manager/bin')
   endif
 endfunction
