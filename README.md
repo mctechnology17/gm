@@ -100,22 +100,22 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
 ```bash
-echo "$(echo "alias push='$PWD/git_manager.sh'" >> ~/.zshrc)"
+echo "$(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
 ```
 
 - For bash
 ```bash
-echo "$(echo "alias push='$PWD/git_manager.sh'" >> ~/.bashrc)"
+echo "$(echo "alias push='$PWD/git_manager'" >> ~/.bashrc)"
 ```
 
 - For fish
 ```bash
-echo "$(echo "alias push "$PWD/git_manager.sh"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
 ```
 
 - For powershell
 ```powershell
-set-alias push "C:\Users\ivanc\config_github\bin\git_manager.sh"
+set-alias push "C:\Users\ivanc\config_github\bin\git_manager"
 ```
 
 # Bindkey
@@ -144,11 +144,11 @@ and at the same time when you are in a github or gitlab repository.
 # This is an example of a macro that you might use to execute a command.
 # This will add the command to history.
 Set-PSReadLineKeyHandler -Key Ctrl+p `
-                         -BriefDescription git_manager.sh `
-                         -LongDescription "git_manager.sh" `
+                         -BriefDescription git_manager `
+                         -LongDescription "git_manager" `
                          -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\git_manager.sh")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\git_manager")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 ```
