@@ -64,55 +64,6 @@ git_manager some features:
 - color feedback
 
     >
-    Already up to date.
-    2 files changed, 37 insertions(+), 15 deletions(-)
-    ==================================
-    | GIT Manager by @mctechnology17 |
-    |--------------------------------|
-    | [c]    config credential       |
-    | [y]    add, commit, push       |
-    | [t]    test: add, commit, push |
-    | [ac]   add, commit             |
-    | [p]    push                    |
-    | [g]    name+mail config        |
-    | [sw]   switch branch           |
-    | [st]   status                  |
-    | [l]    see my last commit      |
-    |        press [q] to exit       |
-    | [me]   merge                   |
-    | [mk]   make branch             |
-    | [ali]  alias to bash/zsh/fish  |
-    | [bin]  cheack binary installed |
-    | [all]  list all branches       |
-    |        press [q] to exit       |
-    | [rev]  revert the last commit  |
-    | [del]  delete branch           |
-    | [lic]  license                 |
-    | [h]    help                    |
-    |--------------------------------|
-    | Press ENTER to exit or CTRL+C  |
-    ==================================
-    main ->
-<
-
-============================================================================
-INSTALLATION                                                  *git_manager-installation*
-
-Quick start
-
-    >
-    git clone https://github.com/mctechnology17/git_manager
-    sh git_manager/bin/git_manager
-    ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
-    zsh # select your konsole, example bash/zsh/fish
-    # restart your terminal or load the sources and and type the following
-    # alias to invoke git_manager at the prompt
-    # when you are in a github repository:
-    push # enjoy!
-<
-
-This is the interface that you receive when you activate git_manager:
-    >
     Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
     2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
     ==================================
@@ -142,6 +93,55 @@ This is the interface that you receive when you activate git_manager:
     | Press ENTER to exit or CTRL+C  |
     ==================================
     main -> current branch
+<
+
+============================================================================
+INSTALLATION                                                  *git_manager-installation*
+
+Quick start
+
+    >
+    git clone https://github.com/mctechnology17/git_manager
+    sh git_manager/bin/git_manager
+    ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
+    zsh # select your konsole, example bash/zsh/fish
+    # restart your terminal or load the sources and and type the following
+    # alias to invoke git_manager at the prompt
+    # when you are in a github repository:
+    push # enjoy!
+<
+
+This is the interface that you receive when you activate git_manager:
+    >
+    Already up to date.
+    2 files changed, 37 insertions(+), 15 deletions(-)
+    ==================================
+    | GIT Manager by @mctechnology17 |
+    |--------------------------------|
+    | [c]    config credential       |
+    | [y]    add, commit, push       |
+    | [t]    test: add, commit, push |
+    | [ac]   add, commit             |
+    | [p]    push                    |
+    | [g]    name+mail config        |
+    | [sw]   switch branch           |
+    | [st]   status                  |
+    | [l]    see my last commit      |
+    |        press [q] to exit       |
+    | [me]   merge                   |
+    | [mk]   make branch             |
+    | [ali]  alias to bash/zsh/fish  |
+    | [bin]  cheack binary installed |
+    | [all]  list all branches       |
+    |        press [q] to exit       |
+    | [rev]  revert the last commit  |
+    | [del]  delete branch           |
+    | [lic]  license                 |
+    | [h]    help                    |
+    |--------------------------------|
+    | Press ENTER to exit or CTRL+C  |
+    ==================================
+    main ->
 <
 
 ============================================================================

@@ -60,17 +60,17 @@ push # enjoy!
 
 This is the interface that you receive when you activate git_manager:
 ```bash
-    Already up to date.
-    2 files changed, 37 insertions(+), 15 deletions(-)
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
     ==================================
-    | GIT Manager by @mctechnology17 |
+    | GIT Manager by @mctechnology17 | -> name and author
     |--------------------------------|
-    | [c]    config credential       |
-    | [y]    add, commit, push       |
-    | [t]    test: add, commit, push |
+    | [c]    config credential       | -> prolong use without password using http format (so NO SSH)
+    | [y]    add, commit, push       | -> these 3 commands run at the same time
+    | [t]    test: add, commit, push | -> IT WILL NOT BE ASKED AND THESE COMMANDS WILL BE EXECUTED WITHOUT INTERVENTION FROM THE USER
     | [ac]   add, commit             |
     | [p]    push                    |
-    | [g]    name+mail config        |
+    | [g]    name+mail config        | -> your name and your mail for the commits
     | [sw]   switch branch           |
     | [st]   status                  |
     | [l]    see my last commit      |
@@ -88,7 +88,7 @@ This is the interface that you receive when you activate git_manager:
     |--------------------------------|
     | Press ENTER to exit or CTRL+C  |
     ==================================
-    main ->
+    main -> current branch
 ```
 
 # Alias
