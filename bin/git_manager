@@ -110,7 +110,7 @@ git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
 ### menu ### {{{
 menu() {
   git_changed="$(git diff --shortstat)"
-  echo "${BOLD}${BLUE}$git_changed${NO_COLOR}"
+  echo "${BOLD}${YELLOW}$git_changed${NO_COLOR}"
   printf '\e[1;40;92m'
   echo "${YELLOW}=================================="
   echo "| GIT Manager by @mctechnology17 |"
