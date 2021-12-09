@@ -113,17 +113,17 @@ Quick start
 
 This is the interface that you receive when you activate git_manager:
     >
-    Already up to date.
-    2 files changed, 37 insertions(+), 15 deletions(-)
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
     ==================================
-    | GIT Manager by @mctechnology17 |
+    | GIT Manager by @mctechnology17 | -> name and author
     |--------------------------------|
-    | [c]    config credential       |
-    | [y]    add, commit, push       |
-    | [t]    test: add, commit, push |
+    | [c]    config credential       | -> prolong use without password using http format (so NO SSH)
+    | [y]    add, commit, push       | -> these 3 commands run at the same time
+    | [t]    test: add, commit, push | -> IT WILL NOT BE ASKED AND THESE COMMANDS WILL BE EXECUTED WITHOUT INTERVENTION FROM THE USER
     | [ac]   add, commit             |
     | [p]    push                    |
-    | [g]    name+mail config        |
+    | [g]    name+mail config        | -> your name and your mail for the commits
     | [sw]   switch branch           |
     | [st]   status                  |
     | [l]    see my last commit      |
@@ -141,7 +141,7 @@ This is the interface that you receive when you activate git_manager:
     |--------------------------------|
     | Press ENTER to exit or CTRL+C  |
     ==================================
-    main ->
+    main -> current branch
 <
 
 ============================================================================
@@ -151,17 +151,17 @@ No Plugin Manager:
 If you are not using any plug manager, you can integrate git_manager to
 vim in the following way, keeping in mind that the repository is in your home
 
-    <
+    >
         set rtp+=~/git_manager
->
+<
 
 Using Vundle: https://github.com/gmarik/vundle
 
 Just add this line to your `~/.vimrc`:
 
-    <
+    >
         Plugin 'mctechnology17/git_manager'
->
+<
 
 And run `:PluginInstall` inside Vim.
 
@@ -169,26 +169,26 @@ Using pathogen.vim: https://github.com/tpope/vim-pathogen
 
 Copy and paste in your shell:
 
-    <
+    >
         cd ~/.vim/bundle
         git clone https://github.com/mctechnology17/git_manager
->
+<
 
 Using vpm: https://github.com/KevinSjoberg/vpm
 
 Run this command in your shell:
 
-    <
+    >
         vpm insert mctechnology17/git_manager
->
+<
 
 Using Plug: https://github.com/junegunn/vim-plug
 
 Just add this line to your `~/.vimrc` inside plug call:
 
-    <
+    >
         Plug 'mctechnology17/git_manager'
->
+<
 
 And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
 
