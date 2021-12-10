@@ -17,22 +17,22 @@
 ----
 
 # Intro
-`git_manager` is a assistant multi platform which can be combined
+`GitManager` is a assistant multi platform which can be combined
 with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVim`.
 
-`git_manager` is fast and lightweight and no outside dependencies.
+`GitManager` is fast and lightweight and no outside dependencies.
 
-`git_manager` works integrating with the plugin handlers or without dependency on them!
+`GitManager` works integrating with the plugin handlers or without dependency on them!
 
 It can be integrated into all operating systems, so far tested on Linux and
 some of its distributions, such as Kali, Ubuntu, Fedora, OpenSuse, of course it
 was tested on MacOs, as well as on Windows working with full compatibility with
 PowerShell and WSL2.
 
-It should be noted that git_manager is compatible with the SHELLS `fish`, `zsh`,
+It should be noted that GitManager is compatible with the SHELLS `fish`, `zsh`,
 `sh`, `bash` and `PowerShell` (tested so far)
 
-git_manager some features:
+GitManager some features:
 - friendly user interface
 - easy use
 - multi platform (OSX, Linux, Docker, Windows, WSL2)
@@ -53,12 +53,12 @@ sh git_manager/bin/git_manager
 ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
 zsh # select your konsole, example bash/zsh/fish
 # restart your terminal or load the sources and and type the following
-# alias to invoke git_manager at the prompt
+# alias to invoke GitManager at the prompt
 # when you are in a github repository:
 push # enjoy!
 ```
 
-This is the interface that you receive when you activate git_manager:
+This is the interface that you receive when you activate GitManager:
 ```bash
     Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
     2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
@@ -92,7 +92,7 @@ This is the interface that you receive when you activate git_manager:
 ```
 
 # Alias
-you can add an alias directly to your terminal when you invoke git_manager
+you can add an alias directly to your terminal when you invoke GitManager
 by typing the `ali` parameter when you are in the main menu.
 
 If you prefer to do it in a manual way, you can do it as follows,
@@ -121,7 +121,7 @@ set-alias push "C:\Users\ivanc\config_github\bin\git_manager"
 # Bindkey
 
 - For zsh
-You can add this line to your zshrc to invoke git_manager
+You can add this line to your zshrc to invoke GitManager
 with the key combination `CTRL+p`.
 
 ``` zsh
@@ -129,14 +129,14 @@ with the key combination `CTRL+p`.
 ```
 
 - For powershell
-You can add this line to your `$PROFILE` to invoke git_manager
+You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
 For a better integration in powershell, you can add the following lines,
 for this it is necessary to have the [PSReadLine][readline]
 module installed.
 
-In this way, you can invoke git_manager with the following key combinations:
+In this way, you can invoke GitManager with the following key combinations:
 `CTRL+p` when you are at the prompt using powershell
 and at the same time when you are in a github or gitlab repository.
 
@@ -144,8 +144,8 @@ and at the same time when you are in a github or gitlab repository.
 # This is an example of a macro that you might use to execute a command.
 # This will add the command to history.
 Set-PSReadLineKeyHandler -Key Ctrl+p `
-                         -BriefDescription git_manager `
-                         -LongDescription "git_manager" `
+                         -BriefDescription GitManager `
+                         -LongDescription "GitManager" `
                          -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\git_manager")
@@ -155,7 +155,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+p `
 
 # VIM
 #### No Plugin Manager
-If you are not using any plug manager, you can integrate git_manager to
+If you are not using any plug manager, you can integrate GitManager to
 vim in the following way, keeping in mind that the repository is in your home
 
 ```vim
@@ -202,7 +202,7 @@ And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
 
 #### Running commands with VIM
 
-Easily invoke git_manager within vim or nvim with the following command.
+Easily invoke GitManager within vim or nvim with the following command.
 
 ```vim
         :GitManager
@@ -236,7 +236,7 @@ If you're enjoying Git Manager, feel free to donate or become a sponsor.
 - [paypal]
 - [sponsor]
 
-Ambassador and creator/maintainer of vimtools, git_manager and more,
+Ambassador and creator/maintainer of vimtools, GitManager and more,
 that are easy to integrate, but very powerful work tools that allow you to
 improve your workflow, integrating with all operating systems and all possible
 shells
