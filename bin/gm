@@ -344,12 +344,11 @@ elif [ "$git_continue" = "cmd" ]; then
   elif [ "$git_alias" = "f" ]; then
     echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
   elif [ "$git_alias" = "c" ]; then
-    ln -sf ${PWD}/gm /usr/local/bin/gm
+    echo "Execute this to set GitManager as command line -> ln -sf ${PWD}/gm /usr/local/bin/gm"
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
-  clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
   echo "|-------------------------|"
