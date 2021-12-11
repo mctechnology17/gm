@@ -11,6 +11,7 @@ https://github.com/mctechnology17/gm/blob/master/CHANGELOG.txt
    of git_manager was renamed to gm, so that the user remembers
    the command better, the variables with that name were also renamed,
    the name of the repository was also renamed
+ - New mapping added for using in vim, GitManagerS
  - as local command line /usr/local/bin/gm -> DONE
  - get option to user to set as path on the profile -> DONE
 
