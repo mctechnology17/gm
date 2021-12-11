@@ -2,7 +2,7 @@
 # FileName: git_manager
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
-# Date: 12.12.2021 22:30
+# Date: 11.12.2021 00:30
 # ====================================================
 
 ### color ### {{{
@@ -22,7 +22,6 @@ BLACKBG="printf '\e[1;40;92m'"
 which git > /dev/null
 if test $? -ne 0
 then
-  printf '\e[1;40;92m'
   echo "${RED}$0: git is not installed. Please install it${NO_COLOR}"
   exit 1
 fi
@@ -98,198 +97,266 @@ END
 }
 #}}}
 
-### is_binary_installed ### {{{
-is_binary_installed() {
-  type git
-  type tig
+git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
+git_changed="$(git diff --shortstat)"
+
+### menu_next ### {{{
+menu_next() {
+  clear
+  echo "${BOLD}${YELLOW}$git_changed${NO_COLOR}"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| [con]  name+mail config |"
+  echo "| [cre]  credential time  |"
+  echo "| [y]    add/commit/push  |"
+  echo "| [ac]   add/commit       |"
+  echo "| [cp]   commit/push      |"
+  echo "| [a]    add              |"
+  echo "| [c]    commit           |"
+  echo "| [p]    push             |"
+  echo "| [test] add/commit/push  |"
+  echo "| [h]    help/usage       |"
+  echo "| [n]    next options     |"
+  echo "|-------------------------|"
+  echo "| Exit: ENTER or CTRL+C   |"
+  echo "==========================="
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_continue
+  if [ "$git_continue" = "n" ]; then
+    menu_previous
+  fi
 }
 #}}}
 
-git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
-
-### menu ### {{{
-menu() {
-  git_changed="$(git diff --shortstat)"
+### menu_previous ### {{{
+menu_previous() {
+  clear
   echo "${BOLD}${YELLOW}$git_changed${NO_COLOR}"
-  printf '\e[1;40;92m'
-  echo "${YELLOW}=================================="
-  echo "| GIT Manager by @mctechnology17 |"
-  echo "|--------------------------------|"
-  echo "| [c]    config credential       |"
-  echo "| [y]    add, commit, push       |"
-  echo "| [t]    test: add, commit, push |"
-  echo "| [ac]   add, commit             |"
-  echo "| [p]    push                    |"
-  echo "| [g]    name+mail config        |"
-  echo "| [sw]   switch branch           |"
-  echo "| [st]   status                  |"
-  echo "| [l]    see my last commit      |"
-  echo "|        press [q] to exit       |"
-  echo "| [me]   merge                   |"
-  echo "| [mk]   make branch             |"
-  echo "| [ali]  alias to bash/zsh/fish  |"
-  echo "| [bin]  cheack binary installed |"
-  echo "| [all]  list all branches       |"
-  echo "|        press [q] to exit       |"
-  echo "| [rev]  revert the last commit  |"
-  echo "| [del]  delete branch           |"
-  echo "| [lic]  license                 |"
-  echo "| [h]    help                    |"
-  echo "|--------------------------------|"
-  echo "| Press ENTER to exit or CTRL+C  |"
-  echo "=================================="
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| [sw]   switch branch    |"
+  echo "| [s]    status           |"
+  echo "| [l]    last commit      |"
+  echo "| [me]   merge            |"
+  echo "| [mk]   make branch      |"
+  echo "| [ali]  alias            |"
+  echo "| [bl]   branches list    |"
+  echo "| [rev]  revert commit    |"
+  echo "| [del]  delete branch    |"
+  echo "| [lic]  license          |"
+  echo "| [n]    previous         |"
+  echo "|-------------------------|"
+  echo "| Exit: ENTER or CTRL+C   |"
+  echo "==========================="
   printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_continue
+  if [ "$git_continue" = "n" ]; then
+    menu_next
+  fi
 }
 #}}}
 
 clear
 git pull --ff-only
-menu
-read -r git_continue
+menu_next
 
 ### git_continue ### {{{
 if [ "$git_continue" = "y" ]; then
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------+"
-  echo "|  Commit, example: update v1.0  |"
-  echo "+--------------------------------+"
-  echo "|      Press CTRL+C to exit      |"
-  echo "+--------------------------------+"
-  printf "$git_branche_prompt ->${NO_COLOR} "
-  read -r git_update
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------+"
-  echo "|  Branch, example: master/main  |"
-  echo "+--------------------------------+"
-  echo "|      Press CTRL+C to exit      |"
-  echo "+--------------------------------+"
-  printf "$git_branche_prompt ->${NO_COLOR} "
-  read -r git_branche
-  git add -A
-  git commit -m "$git_update"
-  git push -u origin $git_branche
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+---------------------------------"
-  echo "| GIT Manager by @mctechnology17"
-  echo "+---------------------------------"
-  echo "| [User]    -> $(git config user.name)"
-  echo "| [Email]   -> $(git config user.email)"
-  echo "| [Commit]  -> $git_update"
-  echo "| [Branche] -> $git_branche"
-  echo "+---------------------------------${NO_COLOR}"
-elif [ "$git_continue" = "p" ]; then
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------+"
-  echo "|  Branch, example: master/main  |"
-  echo "+--------------------------------+"
-  echo "|      Press CTRL+C to exit      |"
-  echo "+--------------------------------+"
-  printf "$git_branche_prompt ->${NO_COLOR} "
-  read -r git_branche
-  git push -u origin $git_branche
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+---------------------------------"
-  echo "| GIT Manager by @mctechnology17"
-  echo "+---------------------------------"
-  echo "| [User]    -> $(git config user.name)"
-  echo "| [Email]   -> $(git config user.email)"
-  echo "| [Branche] -> $git_branche"
-  echo "+---------------------------------${NO_COLOR}"
-elif [ "$git_continue" = "ac" ]; then
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------+"
-  echo "|  Commit, example: update v1.0  |"
-  echo "+--------------------------------+"
-  echo "|      Press CTRL+C to exit      |"
-  echo "+--------------------------------+"
-  printf "$git_branche_prompt ->${NO_COLOR} "
-  read -r git_update
-  git add -A
-  git commit -m "$git_update"
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+---------------------------------"
-  echo "| GIT Manager by @mctechnology17"
-  echo "+---------------------------------"
-  echo "| [User]    -> $(git config user.name)"
-  echo "| [Email]   -> $(git config user.email)"
-  echo "| [Commit]  -> $git_update"
-  echo "+---------------------------------${NO_COLOR}"
-elif [ "$git_continue" = "g" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------+"
-  echo "| Name, example: Martin Schmitz  |"
-  echo "+--------------------------------+"
-  echo "|      Press CTRL+C to exit      |"
-  echo "+--------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a commit          |"
+  echo "| Example: update 0.1     |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_update
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a branch          |"
+  echo "| Example: master/main    |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_branche
+  git add -A
+  git commit -m "$git_update"
+  git push -u origin $git_branche
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
+  echo "| [User]    -> $(git config user.name)"
+  echo "| [Email]   -> $(git config user.email)"
+  echo "| [Commit]  -> $git_update"
+  echo "| [Branche] -> $git_branche"
+  echo "+--------------------------${NO_COLOR}"
+elif [ "$git_continue" = "p" ]; then
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a branch          |"
+  echo "| Example: master/main    |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_branche
+  git push -u origin $git_branche
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
+  echo "| [User]    -> $(git config user.name)"
+  echo "| [Email]   -> $(git config user.email)"
+  echo "| [Commit]  -> $git_update"
+  echo "| [Branche] -> $git_branche"
+  echo "+--------------------------${NO_COLOR}"
+elif [ "$git_continue" = "a" ]; then
+  git add -A
+elif [ "$git_continue" = "c" ]; then
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a commit          |"
+  echo "| Example: update 0.1     |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_update
+  git commit -m "$git_update"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
+  echo "| [User]    -> $(git config user.name)"
+  echo "| [Email]   -> $(git config user.email)"
+  echo "| [Commit]  -> $git_update"
+  echo "| [Branche] -> $git_branche"
+  echo "+--------------------------${NO_COLOR}"
+elif [ "$git_continue" = "ac" ]; then
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a commit          |"
+  echo "| Example: update 0.1     |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
+  printf "$git_branche_prompt ->${NO_COLOR} "
+  read -r git_update
+  git add -A
+  git commit -m "$git_update"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
+  echo "| [User]    -> $(git config user.name)"
+  echo "| [Email]   -> $(git config user.email)"
+  echo "| [Commit]  -> $git_update"
+  echo "| [Branche] -> $git_branche"
+  echo "+--------------------------${NO_COLOR}"
+elif [ "$git_continue" = "con" ]; then
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a name            |"
+  echo "| Example: Schmitz, Martin|"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_name
   git config --global user.name "$git_name"
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+-----------------------------------------+"
-  echo "| Mail, example: martin@zbh.uni-hamburg.de|"
-  echo "+-----------------------------------------+"
-  echo "|           Press CTRL+C to exit          |"
-  echo "+-----------------------------------------+"
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write a mail            |"
+  echo "| Example:                |"
+  echo "| martinschmitz@gmail.com |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_mail
   git config --global user.email $git_mail
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
+  echo "| [User]    -> $(git config user.name)"
+  echo "| [Email]   -> $(git config user.email)"
+  echo "+--------------------------${NO_COLOR}"
 elif [ "$git_continue" = "ali" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+----------------------------+"
-  echo "|   alias to bash/zsh/fish   |"
-  echo "+----------------------------+"
-  echo "| [z]  Add alias to .zshrc   |"
-  echo "| [b]  Add alias to .bashrc  |"
-  echo "| [f]  Add alias config.fish |"
-  echo "+----------------------------+"
-  echo "| Press CTRL+C/ENTER to exit |"
-  echo "+----------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| [z]  alias to ZSH       |"
+  echo "| [b]  alias to BASH      |"
+  echo "| [f]  alias to FISH      |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_alias
   if [ "$git_alias" = "z" ]; then
-    [ -x "$(command -v zsh)" ] && echo "Add alias to ~/.zshrc $(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
+    echo "Add alias to ~/.zshrc $(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
   elif [ "$git_alias" = "b" ]; then
     echo "Add alias to ~/.bashrc $(echo "alias push='$PWD/git_manager'" >> ~/.bashrc)"
   elif [ "$git_alias" = "f" ]; then
-    [ -x "$(command -v fish)" ] && echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
+    echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------------+"
-  echo "|                Usage                 |"
-  echo "+--------------------------------------+"
-  echo "| [push]    In a repository just type  |"
-  echo "|           push in terminal to invoke |"
-  echo "|           IMPORTANT: Restart your    |"
-  echo "|           terminal to take effect    |"
-  echo "+--------------------------------------+${NO_COLOR}"
+  clear
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "|          Usage          |"
+  echo "+-------------------------+"
+  echo "| In a repository just    |"
+  echo "| type [push] in terminal |"
+  echo "| to invoke.              |"
+  echo "| IMPORTANT: Restart your |"
+  echo "| terminal to take effect |"
+  echo "+-------------------------+${NO_COLOR}"
 elif [ "$git_continue" = "lic" ]; then
   copyright
 elif [ "$git_continue" = "h" ]; then
   usage
-elif [ "$git_continue" = "bin" ]; then
-  is_binary_installed
 elif [ "$git_continue" = "del" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+----------------------------------------------------+"
-  echo "| Are you sure you want to delete this branch?[y/n]? |"
-  echo "+----------------------------------------------------+"
-  echo "|                  Press CTRL+C to exit              |"
-  echo "+----------------------------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Are you sure you want to|"
+  echo "| delete this branch[y/n]?|"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_del
   if [ "$git_del" = "y" ]; then
-    printf '\e[1;40;92m'
-    echo "${YELLOW}+-----------------------------------------+"
-    echo "| Write the name of the branch to delete  |"
-    echo "+-----------------------------------------+"
-    echo "|          Press CTRL+C to exit           |"
-    echo "+-----------------------------------------+"
+    clear
+    echo "${YELLOW}==========================="
+    echo "|        GitManager       |"
+    echo "|-------------------------|"
+    echo "| Write the name of the   |"
+    echo "| branch to delete.       |"
+    echo "+-------------------------+"
+    echo "| Press CTRL+C to exit    |"
+    echo "+-------------------------+"
     printf "$git_branche_prompt ->${NO_COLOR} "
     read -r git_tmp
     git branch -D $git_tmp
@@ -299,43 +366,53 @@ elif [ "$git_continue" = "del" ]; then
   fi
 elif [ "$git_continue" = "mk" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+-----------------------------------------+"
-  echo "| Write the name of the branch to make    |"
-  echo "+-----------------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write the name of the   |"
+  echo "| branch to make.         |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git branch $git_tmp
 elif [ "$git_continue" = "me" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+-----------------------------------------+"
-  echo "| Write the name of the branch to merge   |"
-  echo "+-----------------------------------------+"
-  echo "|           Press CTRL+C to exit          |"
-  echo "+-----------------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write the name of the   |"
+  echo "| branch to merge.        |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git merge $git_tmp
 elif [ "$git_continue" = "sw" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+-----------------------------------------+"
-  echo "| Write the name of the branch to switch  |"
-  echo "+-----------------------------------------+"
-  echo "|            Press CTRL+C to exit         |"
-  echo "+-----------------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Write the name of the   |"
+  echo "| branch to switch.       |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git switch $git_tmp
 elif [ "$git_continue" = "rev" ]; then
   clear
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+--------------------------------------------+"
-  echo "|  Sure you want to reverse the change[y/n]? |"
-  echo "+--------------------------------------------+"
-  echo "|             Press CTRL+C to exit           |"
-  echo "+--------------------------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "| Sure you want to reverse|"
+  echo "| the change[y/n]?        |"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_del
   if [ "$git_del" = "y" ]; then
@@ -344,24 +421,25 @@ elif [ "$git_continue" = "rev" ]; then
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
-elif [ "$git_continue" = "all" ]; then
+elif [ "$git_continue" = "bl" ]; then
   clear
   git branch -a
-elif [ "$git_continue" = "c" ]; then
+elif [ "$git_continue" = "cre" ]; then
   clear
   git config credential.helper store
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+----------------------------+"
-  echo "| How much time do you need? |"
-  echo "+----------------------------+"
-  echo "| [h]     1 hour             |"
-  echo "| [hh]    2 hour             |"
-  echo "| [d]     1 day              |"
-  echo "| [dd]    2 day              |"
-  echo "| [def]   default (15 Min)   |"
-  echo "+----------------------------+"
-  echo "|   Press CTRL+C to exit     |"
-  echo "+----------------------------+"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager       |"
+  echo "|-------------------------|"
+  echo "|       How much time?    |"
+  echo "|-------------------------|"
+  echo "| [h]     1 hour          |"
+  echo "| [hh]    2 hour          |"
+  echo "| [d]     1 day           |"
+  echo "| [dd]    2 day           |"
+  echo "| [def]   default (15 Min)|"
+  echo "+-------------------------+"
+  echo "| Press CTRL+C to exit    |"
+  echo "+-------------------------+"
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_cre
   if [ "$git_cre" = "h" ]; then
@@ -383,23 +461,23 @@ elif [ "$git_continue" = "c" ]; then
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
-elif [ "$git_continue" = "st" ]; then
+elif [ "$git_continue" = "s" ]; then
   clear
   echo "${BOLD}${YELLOW}$(git diff --shortstat) ${NO_COLOR}"
   git status -v -s -b -u --column
-elif [ "$git_continue" = "t" ]; then
+  # git diff --stat HEAD^ HEAD
+elif [ "$git_continue" = "test" ]; then
   clear
   git_test="$(git rev-parse --abbrev-ref HEAD)"
   git add -A && git commit -m "test" && git push -u origin $git_test
-  printf '\e[1;40;92m'
-  echo "${YELLOW}+---------------------------------"
-  echo "| GIT Manager by @mctechnology17"
-  echo "+---------------------------------"
+  echo "${YELLOW}==========================="
+  echo "|        GitManager        "
+  echo "|--------------------------"
   echo "| [User]    -> $(git config user.name)"
   echo "| [Email]   -> $(git config user.email)"
   echo "| [Commit]  -> test"
   echo "| [Branche] -> $git_test"
-  echo "+---------------------------------${NO_COLOR}"
+  echo "+--------------------------${NO_COLOR}"
 elif [ "$git_continue" = "l" ]; then
   clear
   git log -1 --pretty=fuller --graph --date=short
