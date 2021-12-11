@@ -1,1 +1,18 @@
-#
+Changelog file for Structures extra.
+https://github.com/mctechnology17/git_manager/blob/master/CHANGELOG.txt
+
+# Structures 0.0.1-beta2 (December 11, 2021)
+=======================================
+
+# List of exciting new features
+
++ BETTER INTEGRATION WHIT SHELL
+ - Refined menu, all menus were readjusted to a single size so that the entire
+   interface looks uniform
+ - New variables were added, more compact information was added, but accurate
+ - A better integration with vim/nvim, can now GitManager
+   be invoked vertically and horizontally in vim
+
++ TODO
+ - as local command line /usr/local/bin/gm
+ - get option to user to set as path on the profile
