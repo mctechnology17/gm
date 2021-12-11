@@ -20,7 +20,19 @@ let s:is_nvim = has('nvim')
 let s:is_mac = has('mac')
 let s:is_linux = has('unix')
 
-function! s:DefineHome()
+function! s:WindowsError() " {{{
+    echohl Error
+    echom 'Try with direct keybin with powershell'
+    echom 'If you dont know how to do it'
+    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
+    echohl None
+endfunction
+"}}}
+
+function! s:DefineHome() " {{{
+  if s:is_vim && !has('terminal')
+    throw 'terminal feature not supported by current vim.'
+  endif
   if !exists('g:gm_set_path')
     if s:is_nvim
       return resolve($HOME.'/.config/nvim/plugged/gm/bin')
@@ -32,14 +44,11 @@ function! s:DefineHome()
       return resolve(expand(g:gm_set_path))
   endif
 endfunction
+"}}}
 
-function! s:RunGitManager()
+function! s:RunGitManager() " {{{
   if s:is_win
-    echohl Error
-    echom 'Try with direct keybin with powershell'
-    echom 'If you dont know how to do it'
-    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
-    echohl None
+    call s:WindowsError()
   else
     let home = s:DefineHome()
     if has('nvim')
@@ -54,14 +63,11 @@ function! s:RunGitManager()
     endif
   endif
 endfunction
+"}}}
 
-function! s:RunGitManagerSb()
+function! s:RunGitManagerSb() " {{{
   if s:is_win
-    echohl Error
-    echom 'Try with direct keybin with powershell'
-    echom 'If you dont know how to do it'
-    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
-    echohl None
+    call s:WindowsError()
   else
     let home = s:DefineHome()
     if has('nvim')
@@ -77,14 +83,11 @@ function! s:RunGitManagerSb()
     endif
   endif
 endfunction
+"}}}
 
-function! s:RunGitManagerS()
+function! s:RunGitManagerS() " {{{
   if s:is_win
-    echohl Error
-    echom 'Try with direct keybin with powershell'
-    echom 'If you dont know how to do it'
-    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
-    echohl None
+    call s:WindowsError()
   else
     let home = s:DefineHome()
     if has('nvim')
@@ -99,9 +102,10 @@ function! s:RunGitManagerS()
     endif
   endif
 endfunction
+"}}}
 
 command! -nargs=0 GitManager       :call s:RunGitManager()
-command! -nargs=0 GitManagerS     :call s:RunGitManagerS()
+command! -nargs=0 GitManagerS      :call s:RunGitManagerS()
 command! -nargs=0 GitManagerSb     :call s:RunGitManagerSb()
 
 " vim: set sw=2 ts=2 sts=2 et ft=vim fdm=marker:
