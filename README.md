@@ -251,7 +251,7 @@ installed previously so as not to have any errors.
 ```
 
 # Donate
-If you're enjoying Git Manager, feel free to donate or become a sponsor.
+If you're enjoying GitManager, feel free to donate or become a sponsor.
 - [paypal]
 - [sponsor]
 
