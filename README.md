@@ -12,7 +12,7 @@
 <br>
 
 
-[Intro](#Intro) | [Installation](#Installation) | [Alias](#Alias) | [Bindkey](#Bindkey) | [VIM](#VIM) | [Donate](#Donate) | [LICENSE](#LICENSE)
+[Intro](#Intro) | [Installation](#Installation) | [Command](#Command) | [Alias](#Alias) | [Bindkey](#Bindkey) | [VIM](#VIM) | [Donate](#Donate) | [LICENSE](#LICENSE)
 
 ----
 
@@ -115,9 +115,16 @@ typing the `n` key to go forward or back.
     main -> current branch
 ```
 
+# Command
+You can set GitManager as local command line.
+
+```bash
+    ln -sf ${PWD}/gm /usr/local/bin/gm
+```
+
 # Alias
-you can add an alias directly to your terminal when you invoke GitManager
-by typing the `ali` parameter when you are in the main menu.
+You can add an alias directly to your terminal when you invoke GitManager
+by typing the `cmd` parameter when you are in the main menu.
 
 If you prefer to do it in a manual way, you can do it as follows,
 assuming your rc-files are at their default addresses.
@@ -134,7 +141,7 @@ echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
 
 - For fish
 ```bash
-echo "$(echo "alias push "sh $PWD/gm"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
 ```
 
 - For powershell

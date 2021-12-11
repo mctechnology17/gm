@@ -19,16 +19,17 @@ CONTENTS                                                *gm-contents*
    02. Features ..................................... |gm-features|
    03. Installation ............................. |gm-installation|
    04. VIM Installation ..................... |gm-vim-installation|
-   05. Alias ........................................... |gm-alias|
-   06. Bindkey ....................................... |gm-bindkey|
-   07. Commands ..................................... |gm-commands|
-   08. Mappings ..................................... |gm-mappings|
-   09. Customization ........................... |gm-customization|
-   10. Contributions ........................... |gm-contributions|
-   11. Bugs ............................................. |gm-bugs|
-   12. Changelog ................................... |gm-changelog|
-   13. credits ....................................... |gm-credits|
-   14. License ....................................... |gm-license|
+   05. Local Command ...................... |gm-local-command-line|
+   06. Alias ........................................... |gm-alias|
+   07. Bindkey ....................................... |gm-bindkey|
+   08. Commands ..................................... |gm-commands|
+   09. Mappings ..................................... |gm-mappings|
+   10. Customization ........................... |gm-customization|
+   11. Contributions ........................... |gm-contributions|
+   12. Bugs ............................................. |gm-bugs|
+   13. Changelog ................................... |gm-changelog|
+   14. credits ....................................... |gm-credits|
+   15. License ....................................... |gm-license|
 
 ============================================================================
 INTRODUCTION                                                 *gm-intro*
@@ -219,6 +220,16 @@ And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
 
 
 ============================================================================
+LOCAL COMMAND                                        *gm-local-command-line*
+
+You can set GitManager as local command line.
+
+   >
+    ln -sf ${PWD}/gm /usr/local/bin/gm
+<
+
+
+============================================================================
 ALIAS                                                  *gm-alias*
 
 
@@ -240,7 +251,7 @@ assuming your rc-files are at their default addresses.
 
 - For fish
    >
-    echo "$(echo "alias push "sh $PWD/gm"" >> ~/.config/fish/config.fish)"
+    echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
 <
 
 - For powershell
