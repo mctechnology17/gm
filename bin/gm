@@ -176,8 +176,17 @@ menu_previous() {
 }
 #}}}
 
-clear
-git pull --ff-only
+if [ "$1" = "--no-pull" ] || [ "$1" = "-np" ]; then
+  echo "--no-pull or -np is activate"
+else
+  git_pull=$(git pull --ff-only)
+  if [ "$git_pull" = "Already up to date." ]; then
+    echo "$git_pull"
+  else
+    echo "$git_pull"
+    sleep 2
+  fi
+fi
 menu_next
 
 ### git_continue ### {{{
