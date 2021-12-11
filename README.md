@@ -49,13 +49,21 @@ GitManager some features:
 ## Quick start
 ```bash
 git clone https://github.com/mctechnology17/gm
+
+# OPTION 1 as local command line
 sh gm/bin/gm
-ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
-zsh # select your konsole, example bash/zsh/fish
+cmd # option cmd to set command line or alias if you using Linux/MacOS
+c # set GitManager as command line, a soft link will be generated in this path /usr/local/bin/gm
+gm # now in a github repository type gm to invoke GitManager as command line and enjoy!
+
+# OPTION 2 as alias
+sh gm/bin/gm
+cmd # option cmd to set command line or alias if you using Linux/MacOS
+z # select your konsole, example z for zsh shell
 # restart your terminal or load the sources and and type the following
 # alias to invoke GitManager at the prompt
-# when you are in a github repository:
-push # enjoy!
+# when you are in a github repository type:
+push # now in a github repository type push to invoke GitManager as command line and enjoy!
 ```
 
 This is the interface that you receive when you activate GitManager:
@@ -223,19 +231,27 @@ Easily invoke GitManager within vim or nvim with the following command.
 
 ```vim
         :GitManager
-        " If you prefer to call it with a shorter command,
-        " you can include this in your vimrc or init.vim
+        :GitManagerS
+        :GitManagerSb
+        # If you prefer to call it with a shorter command,
+        # you can include this in your vimrc or init.vim
         cnoreabbrev gm GitManager
+        cnoreabbrev gms GitManager
+        cnoreabbrev gmsb GitManager
         :gm
+        :gms
+        :gmsb
 ```
 
 #### Mappings with VIM
 Add this to your vimrc or your init.vim
 ```vim
     cnoreabbrev gm GitManager
-    cnoreabbrev gms GitManagerSb
+    cnoreabbrev gms GitManagerS
+    cnoreabbrev gmsb GitManagerS
     nnoremap <Leader>p :GitManager<CR>
-    nnoremap <Leader>j :GitManagerSb<CR>
+    nnoremap <Leader>j :GitManagerS<CR>
+    nnoremap <Leader>l :GitManagerSb<CR>
 ```
 
 #### FloatermNen
