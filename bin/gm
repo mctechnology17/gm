@@ -58,10 +58,11 @@ END
 usage (){
 cat <<END
   Usage:
-    ./gm -> simple use
-    push          -> if you assigned the alias
-    CTRL+p        -> when you are at the prompt, if the bindkey is activated for zsh or powershell
-    <LEADER>p     -> for mapping on vim/nvim
+    ./gm              -> simple use
+    gm                -> as command line
+    push              -> if you assigned the alias
+    CTRL+p or CTRL+g  -> when you are at the prompt, if the bindkey is activated for zsh or powershell
+    <LEADER>p         -> for mapping on vim/nvim
 
 This is the interface that you receive when you activate GitManager:
 

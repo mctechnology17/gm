@@ -116,32 +116,33 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
 ```bash
-echo "$(echo "alias push='$PWD/gm'" >> ~/.zshrc)"
+echo "$(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
 ```
 
 - For bash
 ```bash
-echo "$(echo "alias push='$PWD/gm'" >> ~/.bashrc)"
+echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
 ```
 
 - For fish
 ```bash
-echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "sh $PWD/gm"" >> ~/.config/fish/config.fish)"
 ```
 
 - For powershell
 ```powershell
-set-alias push "C:\Users\ivanc\config_github\bin\gm"
+set-alias push "C:\Users\home\gm\bin\gm"
 ```
 
 # Bindkey
 
 - For zsh
 You can add this line to your zshrc to invoke GitManager
-with the key combination `CTRL+p`.
+with the key combination `CTRL+p` or `CTRL+g` here are some examples.
 
 ``` zsh
   bindkey -s '^p' 'push \n'
+  bindkey -s '^g' 'gm \n'
 ```
 
 - For powershell
