@@ -1,3 +1,10 @@
+" ====================================================
+" FileName: gm.vim
+" Author: Marcos Chow Castro <mctechnology170318@gmail.com>
+" GitHub: https://github.com/mctechnology17
+" Date: 11.12.2021 13:00
+" ====================================================
+
 scriptencoding utf-8
 
 if exists('g:git_manager_loaded')
@@ -39,12 +46,12 @@ function! s:RunGitManager()
     if has('nvim')
       au BufEnter * if &buftype == 'terminal' | :startinsert | endif
       if executable('zsh')
-        exe "vsplit term://zsh ".home."/git_manager"
+        exe "vsplit term://zsh ".home."/gm"
       else
-        exe "vsplit term://bash ".home."/git_manager"
+        exe "vsplit term://bash ".home."/gm"
       endif
     else
-      execute 'vert term '.home.'/git_manager'
+      execute 'vert term '.home.'/gm'
     endif
   endif
 endfunction
@@ -62,12 +69,12 @@ function! s:RunGitManagerSb()
       au BufEnter * if &buftype == 'terminal' | :startinsert | endif
       setlocal splitbelow
       if executable('zsh')
-        exe "split term://zsh ".home."/git_manager"
+        exe "split term://zsh ".home."/gm"
       else
-        exe "split term://bash ".home."/git_manager"
+        exe "split term://bash ".home."/gm"
       endif
     else
-      execute 'belowright term '.home.'/git_manager'
+      execute 'belowright term '.home.'/gm'
     endif
   endif
 endfunction

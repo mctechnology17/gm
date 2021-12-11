@@ -1,5 +1,5 @@
-*git_manager.txt*                                git assistant multi platform
-                                                      *git_manager* *:git_manager*
+*gm.txt*                                git assistant multi platform
+                                                      *gm* *:gm*
 
 
                                ╔═╦═╦═╗
@@ -12,46 +12,46 @@
                                           ╚═╩═╝
 
 ============================================================================
-CONTENTS                                                *git_manager-contents*
+CONTENTS                                                *gm-contents*
 
 
-   01. Intro ........................................... |git_manager-intro|
-   02. Features ..................................... |git_manager-features|
-   03. Installation ............................. |git_manager-installation|
-   04. VIM Installation ..................... |git_manager-vim-installation|
-   05. Alias ........................................... |git_manager-alias|
-   06. Bindkey ....................................... |git_manager-bindkey|
-   07. Commands ..................................... |git_manager-commands|
-   08. Mappings ..................................... |git_manager-mappings|
-   09. Customization ........................... |git_manager-customization|
-   10. Contributions ........................... |git_manager-contributions|
-   11. Bugs ............................................. |git_manager-bugs|
-   12. Changelog ................................... |git_manager-changelog|
-   13. credits ....................................... |git_manager-credits|
-   14. License ....................................... |git_manager-license|
+   01. Intro ........................................... |gm-intro|
+   02. Features ..................................... |gm-features|
+   03. Installation ............................. |gm-installation|
+   04. VIM Installation ..................... |gm-vim-installation|
+   05. Alias ........................................... |gm-alias|
+   06. Bindkey ....................................... |gm-bindkey|
+   07. Commands ..................................... |gm-commands|
+   08. Mappings ..................................... |gm-mappings|
+   09. Customization ........................... |gm-customization|
+   10. Contributions ........................... |gm-contributions|
+   11. Bugs ............................................. |gm-bugs|
+   12. Changelog ................................... |gm-changelog|
+   13. credits ....................................... |gm-credits|
+   14. License ....................................... |gm-license|
 
 ============================================================================
-INTRODUCTION                                                 *git_manager-intro*
+INTRODUCTION                                                 *gm-intro*
 
-`git_manager` is a assistant multi platform which can be combined
+`GitManager` is a assistant multi platform which can be combined
 with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVim`.
 
-`git_manager` is fast and lightweight and no outside dependencies.
+`GitManager` is fast and lightweight and no outside dependencies.
 
-`git_manager` works integrating with the plugin handlers or without dependency on them!
+`GitManager` works integrating with the plugin handlers or without dependency on them!
 
 It can be integrated into all operating systems, so far tested on Linux and
 some of its distributions, such as Kali, Ubuntu, Fedora, OpenSuse, of course it
 was tested on MacOs, as well as on Windows working with full compatibility with
 PowerShell and WSL2.
 
-It should be noted that git_manager is compatible with the SHELLS `fish`, `zsh`,
+It should be noted that GitManager is compatible with the SHELLS `fish`, `zsh`,
 `sh`, `bash` and `PowerShell` (tested so far)
 
 ============================================================================
-FEATURES                                                  *git_manager-features*
+FEATURES                                                  *gm-features*
 
-git_manager some features:
+GitManager some features:
 - friendly user interface
 - easy use
 - multi platform (OSX, Linux, Docker, Windows, WSL2)
@@ -113,22 +113,22 @@ typing the `n` key to go forward or back.
 <
 
 ============================================================================
-INSTALLATION                                                  *git_manager-installation*
+INSTALLATION                                                  *gm-installation*
 
 Quick start
 
     >
     git clone https://github.com/mctechnology17/git_manager
-    sh git_manager/bin/git_manager
+    sh git_manager/bin/gm
     ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
     zsh # select your konsole, example bash/zsh/fish
     # restart your terminal or load the sources and and type the following
-    # alias to invoke git_manager at the prompt
+    # alias to invoke GitManager at the prompt
     # when you are in a github repository:
     push # enjoy!
 <
 
-This is the interface that you receive when you activate git_manager:
+This is the interface that you receive when you activate GitManager:
     >
     Already up to date.
     2 files changed, 37 insertions(+), 15 deletions(-)
@@ -162,10 +162,10 @@ This is the interface that you receive when you activate git_manager:
 <
 
 ============================================================================
-VIM INSTALLATION                                                  *git_manager-vim-installation*
+VIM INSTALLATION                                                  *gm-vim-installation*
 
 No Plugin Manager:
-If you are not using any plug manager, you can integrate git_manager to
+If you are not using any plug manager, you can integrate GitManager to
 vim in the following way, keeping in mind that the repository is in your home
 
     >
@@ -211,10 +211,10 @@ And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
 
 
 ============================================================================
-ALIAS                                                  *git_manager-alias*
+ALIAS                                                  *gm-alias*
 
 
-you can add an alias directly to your terminal when you invoke git_manager
+you can add an alias directly to your terminal when you invoke GitManager
 by typing the `ali` parameter when you are in the main menu.
 
 If you prefer to do it in a manual way, you can do it as follows,
@@ -222,30 +222,30 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
    >
-    echo "$(echo "alias push='$PWD/git_manager.sh'" >> ~/.zshrc)"
+    echo "$(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
 <
 
 - For bash
    >
-    echo "$(echo "alias push='$PWD/git_manager.sh'" >> ~/.bashrc)"
+    echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
 <
 
 - For fish
    >
-    echo "$(echo "alias push "$PWD/git_manager.sh"" >> ~/.config/fish/config.fish)"
+    echo "$(echo "alias push "sh $PWD/gm"" >> ~/.config/fish/config.fish)"
 <
 
 - For powershell
    >
-    set-alias push "C:\Users\ivanc\config_github\bin\git_manager.sh"
+    set-alias push "C:\Users\home\git_manager\bin\gm"
 <
 
 ============================================================================
-BINDKEY                                                  *git_manager-bindkey*
+BINDKEY                                                  *gm-bindkey*
 
 
 - For zsh
-You can add this line to your zshrc to invoke git_manager
+You can add this line to your zshrc to invoke GitManager
 with the key combination `CTRL+p`.
 
    >
@@ -253,14 +253,14 @@ with the key combination `CTRL+p`.
 <
 
 - For powershell
-You can add this line to your `$PROFILE` to invoke git_manager
+You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
 For a better integration in powershell, you can add the following lines,
 for this it is necessary to have the `PSReadLine: https://github.com/PowerShell/PSReadLine/blob/master/README.md`
 module installed.
 
-In this way, you can invoke git_manager with the following key combinations:
+In this way, you can invoke GitManager with the following key combinations:
 `CTRL+p` when you are at the prompt using powershell
 and at the same time when you are in a github or gitlab repository.
 
@@ -268,24 +268,24 @@ and at the same time when you are in a github or gitlab repository.
     # This is an example of a macro that you might use to execute a command.
     # This will add the command to history.
     Set-PSReadLineKeyHandler -Key Ctrl+p `
-                             -BriefDescription git_manager `
-                             -LongDescription "git_manager" `
+                             -BriefDescription GitManager `
+                             -LongDescription "GitManager" `
                              -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\git_manager")
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\gm")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 <
 
 
 ============================================================================
-COMMANDS                                                  *git_manager-commands*
+COMMANDS                                                  *gm-commands*
                                                           *GitManager*
                                                           *gm*
                                                           *GitManagerSp*
                                                           *gms*
 
-Easily invoke git_manager within vim or nvim with the following command.
+Easily invoke GitManager within vim or nvim with the following command.
         >
         :GitManager
         :GitManagerSb
@@ -298,7 +298,7 @@ Easily invoke git_manager within vim or nvim with the following command.
 <
 
 ============================================================================
-MAPPINGS                                                  *git_manager-mappings*
+MAPPINGS                                                  *gm-mappings*
                                                           *GitManager*
                                                           *gm*
 Maping recommended
@@ -308,8 +308,8 @@ Maping recommended
 <
 
 ============================================================================
-CUSTOMIZATION                                                  *git_manager-customization*
-                                                  *git_manager-floaterm*
+CUSTOMIZATION                                                  *gm-customization*
+                                                  *gm-floaterm*
 
 Integration with Floaterm
 
@@ -319,12 +319,12 @@ the repository in your home directory, then just copy the following mapping,
 keep in mind to have Floaterm installed previously so as not to have any errors
 
     >
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/git_manager/bin/git_manager<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/git_manager/bin/gm<CR>
 <
 
                                                   *g:git_manager_set_path*
 
-The user can define the path if he has cloned or copied the git_amanger
+The user can define the path if he has cloned or copied the git_manager
 executable in another path.
 
 These are examples of how you can do it correctly using an environment variable
@@ -336,7 +336,7 @@ and with the expand function, inside the function already given by vim resolve.
 <
 
 ============================================================================
-CONTRIBUTIONS                                                  *git_manager-contributions*
+CONTRIBUTIONS                                                  *gm-contributions*
 
 Contributions are welcomed and appreciated. Just follow the normal Github
 procedure. Go to:
@@ -347,7 +347,7 @@ Fork the project. Work on what you think would make it better. Send a pull
 request.
 
 ============================================================================
-BUGS                                                       *git_manager-bugs*
+BUGS                                                       *gm-bugs*
 
 Before submitting a bug report, try upgrading to the latest version of the
 plugin. The bug could have been fixed already.
@@ -361,12 +361,12 @@ been reported already. You can add more information to the issue in case it
 has. Otherwise, submit a new issue.
 
 ============================================================================
-CHANGELOG                                             *git_manager-changelog*
+CHANGELOG                                             *gm-changelog*
 
 Refer to CHANGELOG.txt
 
 ============================================================================
-CREDITS                                                 *git_manager-credits*
+CREDITS                                                 *gm-credits*
 
 Marcos Chow Castro - MC Technology
 Mail: mctechnology170318@gmail.com
@@ -375,6 +375,6 @@ Twitter: https://twitter.com/mctechnology17
 Youtube: https://www.youtube.com/c/mctechnology17
 
 ============================================================================
-LICENSE                                                 *git_manager-license*
+LICENSE                                                 *gm-license*
 
 Released under the GNU General Public License v3.0.

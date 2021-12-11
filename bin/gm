@@ -1,5 +1,5 @@
 # ====================================================
-# FileName: git_manager
+# FileName: gm
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
 # Date: 11.12.2021 00:30
@@ -58,7 +58,7 @@ END
 usage (){
 cat <<END
   Usage:
-    ./git_manager -> simple use
+    ./gm -> simple use
     push          -> if you assigned the alias
     CTRL+p        -> when you are at the prompt, if the bindkey is activated for zsh or powershell
     <LEADER>p     -> for mapping on vim/nvim
@@ -158,7 +158,7 @@ menu_previous() {
   echo "| [l]    last commit      |"
   echo "| [me]   merge            |"
   echo "| [mk]   make branch      |"
-  echo "| [ali]  alias            |"
+  echo "| [cmd]  alias/command    |"
   echo "| [bl]   branches list    |"
   echo "| [rev]  revert commit    |"
   echo "| [del]  delete branch    |"
@@ -313,11 +313,12 @@ elif [ "$git_continue" = "con" ]; then
   echo "| [User]    -> $(git config user.name)"
   echo "| [Email]   -> $(git config user.email)"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "ali" ]; then
+elif [ "$git_continue" = "cmd" ]; then
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
   echo "|-------------------------|"
+  echo "| [c]  set commmand line  |"
   echo "| [z]  alias to ZSH       |"
   echo "| [b]  alias to BASH      |"
   echo "| [f]  alias to FISH      |"
@@ -327,11 +328,13 @@ elif [ "$git_continue" = "ali" ]; then
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_alias
   if [ "$git_alias" = "z" ]; then
-    echo "Add alias to ~/.zshrc $(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
+    echo "Add alias to ~/.zshrc $(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
   elif [ "$git_alias" = "b" ]; then
-    echo "Add alias to ~/.bashrc $(echo "alias push='$PWD/git_manager'" >> ~/.bashrc)"
+    echo "Add alias to ~/.bashrc $(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
   elif [ "$git_alias" = "f" ]; then
-    echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
+    echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "sh $PWD/gm"" >> ~/.config/fish/config.fish)"
+  elif [ "$git_alias" = "c" ]; then
+    ln -sf ${PWD}/gm /usr/local/bin/gm
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
@@ -343,8 +346,9 @@ elif [ "$git_continue" = "ali" ]; then
   echo "|          Usage          |"
   echo "+-------------------------+"
   echo "| In a repository just    |"
-  echo "| type [push] in terminal |"
-  echo "| to invoke.              |"
+  echo "| type [push] as alias or |"
+  echo "| type [gm] as command in |"
+  echo "| your terminal to invoke.|"
   echo "| IMPORTANT: Restart your |"
   echo "| terminal to take effect |"
   echo "+-------------------------+${NO_COLOR}"
