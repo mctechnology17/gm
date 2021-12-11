@@ -48,8 +48,8 @@ GitManager some features:
 
 ## Quick start
 ```bash
-git clone https://github.com/mctechnology17/git_manager
-sh git_manager/bin/git_manager
+git clone https://github.com/mctechnology17/gm
+sh gm/bin/gm
 ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
 zsh # select your konsole, example bash/zsh/fish
 # restart your terminal or load the sources and and type the following
@@ -116,22 +116,22 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
 ```bash
-echo "$(echo "alias push='$PWD/git_manager'" >> ~/.zshrc)"
+echo "$(echo "alias push='$PWD/gm'" >> ~/.zshrc)"
 ```
 
 - For bash
 ```bash
-echo "$(echo "alias push='$PWD/git_manager'" >> ~/.bashrc)"
+echo "$(echo "alias push='$PWD/gm'" >> ~/.bashrc)"
 ```
 
 - For fish
 ```bash
-echo "$(echo "alias push "$PWD/git_manager"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
 ```
 
 - For powershell
 ```powershell
-set-alias push "C:\Users\ivanc\config_github\bin\git_manager"
+set-alias push "C:\Users\ivanc\config_github\bin\gm"
 ```
 
 # Bindkey
@@ -164,7 +164,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+p `
                          -LongDescription "GitManager" `
                          -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\git_manager")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 ```
@@ -175,7 +175,7 @@ If you are not using any plug manager, you can integrate GitManager to
 vim in the following way, keeping in mind that the repository is in your home
 
 ```vim
-    set rtp+=~/git_manager
+    set rtp+=~/gm
 ```
 
 #### Using [Vundle](https://github.com/gmarik/vundle):
@@ -183,7 +183,7 @@ vim in the following way, keeping in mind that the repository is in your home
 Just add this line to your `~/.vimrc`:
 
 ```vim
-Plugin 'mctechnology17/git_manager'
+Plugin 'mctechnology17/gm'
 ```
 And run `:PluginInstall` inside Vim.
 
@@ -193,7 +193,7 @@ Copy and paste in your shell:
 
 ```bash
 cd ~/.vim/bundle
-git clone https://github.com/mctechnology17/git_manager
+git clone https://github.com/mctechnology17/gm
 ```
 
 #### Using [vpm](https://github.com/KevinSjoberg/vpm):
@@ -201,7 +201,7 @@ git clone https://github.com/mctechnology17/git_manager
 Run this command in your shell:
 
 ```bash
-vpm insert mctechnology17/git_manager
+vpm insert mctechnology17/gm
 ```
 
 #### Using [Plug](https://github.com/junegunn/vim-plug):
@@ -209,7 +209,7 @@ vpm insert mctechnology17/git_manager
 Just add this line to your `~/.vimrc` inside plug call:
 
 ```vim
-Plug 'mctechnology17/git_manager'
+Plug 'mctechnology17/gm'
 ```
 
 And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
@@ -246,7 +246,7 @@ then just copy the following mapping, keep in mind to have Floaterm
 installed previously so as not to have any errors.
 
 ```vim
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/git_manager/bin/git_manager<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm<CR>
 ```
 
 # Donate
@@ -275,7 +275,7 @@ Copyright (c) 2021 Marcos Chow Castro
 [facebook]: https://m.facebook.com/mctechnology17/
 [reddit]:https://www.reddit.com/user/mctechnology17
 
-[git_manager]: https://github.com/mctechnology17/git_manager
+[gm]: https://github.com/mctechnology17/gm
 [vimtools]: https://github.com/mctechnology17/vimtools
 [jailbreakrepo]: https://mctechnology17.github.io/
 [uiglitch]: https://repo.packix.com/package/com.mctechnology.uiglitch/

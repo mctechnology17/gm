@@ -7,12 +7,12 @@
 
 scriptencoding utf-8
 
-if exists('g:git_manager_loaded')
+if exists('g:gm_loaded')
   finish
 endif
 
-let g:git_manager_loaded =
-      \ get(g:, 'git_manager_loaded', 1)
+let g:gm_loaded =
+      \ get(g:, 'gm_loaded', 1)
 
 " let s:root = expand('<sfile>:h:h:h')
 let s:is_win = has('win32')||has('win64')
@@ -22,15 +22,15 @@ let s:is_mac = has('mac')
 let s:is_linux = has('unix')
 
 function! s:DefineHome()
-  if !exists('g:git_manager_set_path')
+  if !exists('g:gm_set_path')
     if s:is_nvim
-      return resolve($HOME.'/.config/nvim/plugged/git_manager/bin')
+      return resolve($HOME.'/.config/nvim/plugged/gm/bin')
     endif
     if s:is_vim
-      return resolve($HOME.'/.vim/plugged/git_manager/bin')
+      return resolve($HOME.'/.vim/plugged/gm/bin')
     endif
   else
-      return resolve(expand(g:git_manager_set_path))
+      return resolve(expand(g:gm_set_path))
   endif
 endfunction
 
@@ -39,7 +39,7 @@ function! s:RunGitManager()
     echohl Error
     echom 'Try with direct keybin with powershell'
     echom 'If you dont know how to do it'
-    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/git_manager'
+    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
     echohl None
   else
     let home = s:DefineHome()
@@ -61,7 +61,7 @@ function! s:RunGitManagerSb()
     echohl Error
     echom 'Try with direct keybin with powershell'
     echom 'If you dont know how to do it'
-    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/git_manager'
+    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
     echohl None
   else
     let home = s:DefineHome()

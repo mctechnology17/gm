@@ -1,5 +1,5 @@
 Changelog file for Structures extra.
-https://github.com/mctechnology17/git_manager/blob/master/CHANGELOG.txt
+https://github.com/mctechnology17/gm/blob/master/CHANGELOG.txt
 
 # Structures 0.0.1-beta2 (December 11, 2021)
 =======================================

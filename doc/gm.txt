@@ -118,8 +118,8 @@ INSTALLATION                                                  *gm-installation*
 Quick start
 
     >
-    git clone https://github.com/mctechnology17/git_manager
-    sh git_manager/bin/gm
+    git clone https://github.com/mctechnology17/gm
+    sh gm/bin/gm
     ali # option ali to alias to bash/zsh/fish if you using Linux/MacOS
     zsh # select your konsole, example bash/zsh/fish
     # restart your terminal or load the sources and and type the following
@@ -169,7 +169,7 @@ If you are not using any plug manager, you can integrate GitManager to
 vim in the following way, keeping in mind that the repository is in your home
 
     >
-        set rtp+=~/git_manager
+        set rtp+=~/gm
 <
 
 Using Vundle: https://github.com/gmarik/vundle
@@ -177,7 +177,7 @@ Using Vundle: https://github.com/gmarik/vundle
 Just add this line to your `~/.vimrc`:
 
     >
-        Plugin 'mctechnology17/git_manager'
+        Plugin 'mctechnology17/gm'
 <
 
 And run `:PluginInstall` inside Vim.
@@ -188,7 +188,7 @@ Copy and paste in your shell:
 
     >
         cd ~/.vim/bundle
-        git clone https://github.com/mctechnology17/git_manager
+        git clone https://github.com/mctechnology17/gm
 <
 
 Using vpm: https://github.com/KevinSjoberg/vpm
@@ -196,7 +196,7 @@ Using vpm: https://github.com/KevinSjoberg/vpm
 Run this command in your shell:
 
     >
-        vpm insert mctechnology17/git_manager
+        vpm insert mctechnology17/gm
 <
 
 Using Plug: https://github.com/junegunn/vim-plug
@@ -204,7 +204,7 @@ Using Plug: https://github.com/junegunn/vim-plug
 Just add this line to your `~/.vimrc` inside plug call:
 
     >
-        Plug 'mctechnology17/git_manager'
+        Plug 'mctechnology17/gm'
 <
 
 And run `:PlugInstall` inside Vim or `vim +PlugInstall +qa` from shell.
@@ -237,7 +237,7 @@ assuming your rc-files are at their default addresses.
 
 - For powershell
    >
-    set-alias push "C:\Users\home\git_manager\bin\gm"
+    set-alias push "C:\Users\home\gm\bin\gm"
 <
 
 ============================================================================
@@ -272,7 +272,7 @@ and at the same time when you are in a github or gitlab repository.
                              -LongDescription "GitManager" `
                              -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\git_manager\bin\gm")
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 <
@@ -319,20 +319,20 @@ the repository in your home directory, then just copy the following mapping,
 keep in mind to have Floaterm installed previously so as not to have any errors
 
     >
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/git_manager/bin/gm<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm<CR>
 <
 
-                                                  *g:git_manager_set_path*
+                                                  *g:gm_set_path*
 
-The user can define the path if he has cloned or copied the git_manager
+The user can define the path if he has cloned or copied the gm
 executable in another path.
 
 These are examples of how you can do it correctly using an environment variable
 and with the expand function, inside the function already given by vim resolve.
 
     >
-    let g:git_manager_set_path = resolve(expand('~/git_manager/bin'))
-    let g:git_manager_set_path = resolve($HOME."/git_manager/bin")
+    let g:gm_set_path = resolve(expand('~/gm/bin'))
+    let g:gm_set_path = resolve($HOME."/gm/bin")
 <
 
 ============================================================================
@@ -341,7 +341,7 @@ CONTRIBUTIONS                                                  *gm-contributions
 Contributions are welcomed and appreciated. Just follow the normal Github
 procedure. Go to:
 
-    https://github.com/mctechnology17/git_manager
+    https://github.com/mctechnology17/gm
 
 Fork the project. Work on what you think would make it better. Send a pull
 request.
@@ -354,7 +354,7 @@ plugin. The bug could have been fixed already.
 
 If the problem persists, go to:
 
-    https://github.com/mctechnology17/git_manager
+    https://github.com/mctechnology17/gm
 
 Check the list of open issues and see if the problem you are facing has not
 been reported already. You can add more information to the issue in case it
