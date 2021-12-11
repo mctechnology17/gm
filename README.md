@@ -59,35 +59,51 @@ push # enjoy!
 ```
 
 This is the interface that you receive when you activate GitManager:
+
+The main menu consists of two parts, and you can go from one to the other by
+typing the `n` key to go forward or back.
+
 ```bash
     Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
     2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
-    ==================================
-    | GIT Manager by @mctechnology17 | -> name and author
-    |--------------------------------|
-    | [c]    config credential       | -> prolong use without password using http format (so NO SSH)
-    | [y]    add, commit, push       | -> these 3 commands run at the same time
-    | [t]    test: add, commit, push | -> IT WILL NOT BE ASKED AND THESE COMMANDS WILL BE EXECUTED WITHOUT INTERVENTION FROM THE USER
-    | [ac]   add, commit             |
-    | [p]    push                    |
-    | [g]    name+mail config        | -> your name and your mail for the commits
-    | [sw]   switch branch           |
-    | [st]   status                  |
-    | [l]    see my last commit      |
-    |        press [q] to exit       |
-    | [me]   merge                   |
-    | [mk]   make branch             |
-    | [ali]  alias to bash/zsh/fish  |
-    | [bin]  cheack binary installed |
-    | [all]  list all branches       |
-    |        press [q] to exit       |
-    | [rev]  revert the last commit  |
-    | [del]  delete branch           |
-    | [lic]  license                 |
-    | [h]    help                    |
-    |--------------------------------|
-    | Press ENTER to exit or CTRL+C  |
-    ==================================
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [con]  name+mail config | -> configure your email and your name
+    | [cre]  credential time  | -> the time without passwords is prolonged using http
+    | [y]    add/commit/push  | -> these three commands are run in a row
+    | [ac]   add/commit       | -> these two commands are run in a row
+    | [cp]   commit/push      | -> these two commands are run in a row
+    | [a]    add              | -> add all files that have not been attached
+    | [c]    commit           | -> commit :)
+    | [p]    push             | -> push :)
+    | [test] add/commit/push  | -> RUN THESE THREE COMMANDS WITHOUT ASKING
+    | [h]    help/usage       | -> help, usage :)
+    | [n]    next options     | -> next menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
+    main -> current branch
+
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [sw]   switch branch    |
+    | [s]    status           |
+    | [l]    last commit      | -> see last commit
+    | [me]   merge            |
+    | [mk]   make branch      |
+    | [ali]  alias            | -> add alias to bash zsh or fish
+    | [bl]   branches list    | -> lista all branches
+    | [rev]  revert commit    |
+    | [del]  delete branch    |
+    | [lic]  license          |
+    | [n]    previous         | -> previous menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
     main -> current branch
 ```
 
@@ -216,7 +232,9 @@ Easily invoke GitManager within vim or nvim with the following command.
 Add this to your vimrc or your init.vim
 ```vim
     cnoreabbrev gm GitManager
+    cnoreabbrev gms GitManagerSb
     nnoremap <Leader>p :GitManager<CR>
+    nnoremap <Leader>j :GitManagerSb<CR>
 ```
 
 #### FloatermNen
