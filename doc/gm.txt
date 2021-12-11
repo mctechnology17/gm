@@ -100,7 +100,7 @@ typing the `n` key to go forward or back.
     | [l]    last commit      | -> see last commit
     | [me]   merge            |
     | [mk]   make branch      |
-    | [ali]  alias            | -> add alias to bash zsh or fish
+    | [cmd]  alias/command    | -> add gm as command line or add alias to bash zsh or fish
     | [bl]   branches list    | -> lista all branches
     | [rev]  revert commit    |
     | [del]  delete branch    |
