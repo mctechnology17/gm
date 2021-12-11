@@ -1,6 +1,19 @@
 Changelog file for Structures extra.
 https://github.com/mctechnology17/gm/blob/master/CHANGELOG.txt
 
+# Structures 0.0.1-beta3 (December 11, 2021)
+=======================================
+
+# List of exciting new features
+
++ RENAME FROM git_manager to gm
+ - The documentation was updated successfully, new tags, and the name
+   of git_manager was renamed to gm, so that the user remembers
+   the command better, the variables with that name were also renamed,
+   the name of the repository was also renamed
+ - as local command line /usr/local/bin/gm -> DONE
+ - get option to user to set as path on the profile -> DONE
+
 # Structures 0.0.1-beta2 (December 11, 2021)
 =======================================
 
