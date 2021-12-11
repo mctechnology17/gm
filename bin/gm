@@ -184,7 +184,7 @@ else
     echo "$git_pull"
   else
     echo "$git_pull"
-    sleep 2
+    sleep 5
   fi
 fi
 menu_next
