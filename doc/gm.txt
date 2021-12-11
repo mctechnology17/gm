@@ -282,19 +282,24 @@ and at the same time when you are in a github or gitlab repository.
 COMMANDS                                                  *gm-commands*
                                                           *GitManager*
                                                           *gm*
-                                                          *GitManagerSp*
+                                                          *GitManagerS*
                                                           *gms*
+                                                          *GitManagerSb*
+                                                          *gmsb*
 
 Easily invoke GitManager within vim or nvim with the following command.
         >
         :GitManager
+        :GitManagerS
         :GitManagerSb
         # If you prefer to call it with a shorter command,
         # you can include this in your vimrc or init.vim
         cnoreabbrev gm GitManager
-        cnoreabbrev gm GitManager
+        cnoreabbrev gms GitManager
+        cnoreabbrev gmsb GitManager
         :gm
         :gms
+        :gmsb
 <
 
 ============================================================================
@@ -302,9 +307,13 @@ MAPPINGS                                                  *gm-mappings*
                                                           *GitManager*
                                                           *gm*
 Maping recommended
-    >
-    cnoreabbrev gm GitManager
-    nnoremap <Leader>p :GitManager<CR>
+        >
+        cnoreabbrev gm GitManager
+        cnoreabbrev gms GitManager
+        cnoreabbrev gmsb GitManager
+        nnoremap <Leader>p :GitManager<CR>
+        nnoremap <Leader>j :GitManagerS<CR>
+        nnoremap <Leader>l :GitManagerSb<CR>
 <
 
 ============================================================================

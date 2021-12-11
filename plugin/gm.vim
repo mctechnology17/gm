@@ -14,7 +14,6 @@ endif
 let g:gm_loaded =
       \ get(g:, 'gm_loaded', 1)
 
-" let s:root = expand('<sfile>:h:h:h')
 let s:is_win = has('win32')||has('win64')
 let s:is_vim = !has('nvim')
 let s:is_nvim = has('nvim')
@@ -79,7 +78,30 @@ function! s:RunGitManagerSb()
   endif
 endfunction
 
+function! s:RunGitManagerS()
+  if s:is_win
+    echohl Error
+    echom 'Try with direct keybin with powershell'
+    echom 'If you dont know how to do it'
+    echom 'Go to this address and read the instructions: https://github.com/mctechnology17/gm'
+    echohl None
+  else
+    let home = s:DefineHome()
+    if has('nvim')
+      au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+      if executable('zsh')
+        exe "split term://zsh ".home."/gm"
+      else
+        exe "split term://bash ".home."/gm"
+      endif
+    else
+      execute 'topleft term '.home.'/gm'
+    endif
+  endif
+endfunction
+
 command! -nargs=0 GitManager       :call s:RunGitManager()
+command! -nargs=0 GitManagerS     :call s:RunGitManagerS()
 command! -nargs=0 GitManagerSb     :call s:RunGitManagerSb()
 
 " vim: set sw=2 ts=2 sts=2 et ft=vim fdm=marker:
