@@ -19,6 +19,11 @@ let s:is_vim = !has('nvim')
 let s:is_nvim = has('nvim')
 let s:is_mac = has('mac')
 let s:is_linux = has('unix')
+if !exists('g:gm_set_flags')
+  let s:flags = 0
+else
+  let s:flags = g:gm_set_flags
+endif
 
 function! s:WindowsError() " {{{
     echohl Error
@@ -54,9 +59,9 @@ function! s:RunGitManager() " {{{
     if has('nvim')
       au BufEnter * if &buftype == 'terminal' | :startinsert | endif
       if executable('zsh')
-        exe "vsplit term://zsh ".home."/gm"
+        exe 'vsplit term://zsh '.home.'/gm'
       else
-        exe "vsplit term://bash ".home."/gm"
+        exe 'vsplit term://bash '.home.'/gm'
       endif
     else
       execute 'vert term '.home.'/gm'
@@ -74,9 +79,9 @@ function! s:RunGitManagerSb() " {{{
       au BufEnter * if &buftype == 'terminal' | :startinsert | endif
       setlocal splitbelow
       if executable('zsh')
-        exe "split term://zsh ".home."/gm"
+        exe 'split term://zsh '.home.'/gm'
       else
-        exe "split term://bash ".home."/gm"
+        exe 'split term://bash '.home.'/gm'
       endif
     else
       execute 'belowright term '.home.'/gm'
@@ -93,9 +98,9 @@ function! s:RunGitManagerS() " {{{
     if has('nvim')
       au BufEnter * if &buftype == 'terminal' | :startinsert | endif
       if executable('zsh')
-        exe "split term://zsh ".home."/gm"
+        exe 'split term://zsh '.home.'/gm'
       else
-        exe "split term://bash ".home."/gm"
+        exe 'split term://bash '.home.'/gm'
       endif
     else
       execute 'topleft term '.home.'/gm'
