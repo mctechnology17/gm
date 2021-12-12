@@ -19,11 +19,6 @@ let s:is_vim = !has('nvim')
 let s:is_nvim = has('nvim')
 let s:is_mac = has('mac')
 let s:is_linux = has('unix')
-if !exists('g:gm_set_flags')
-  let s:flags = 0
-else
-  let s:flags = g:gm_set_flags
-endif
 
 function! s:WindowsError() " {{{
     echohl Error
@@ -56,15 +51,32 @@ function! s:RunGitManager() " {{{
     call s:WindowsError()
   else
     let home = s:DefineHome()
-    if has('nvim')
-      au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-      if executable('zsh')
-        exe 'vsplit term://zsh '.home.'/gm'
+    au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    if !exists('g:gm_no_pull')
+      if has('nvim')
+        if executable('zsh')
+          exe 'vsplit term://zsh '.home.'/gm'
+        else
+          exe 'vsplit term://bash '.home.'/gm'
+        endif
       else
-        exe 'vsplit term://bash '.home.'/gm'
+        execute 'vert term '.home.'/gm'
+      endif
+    elseif g:gm_no_pull ==# '-np'
+      if has('nvim')
+        if executable('zsh')
+          exe 'vsplit term://zsh '.home.'/gm -np'
+        else
+          exe 'vsplit term://bash '.home.'/gm -np'
+        endif
+      else
+        execute 'vert term '.home.'/gm -np'
       endif
     else
-      execute 'vert term '.home.'/gm'
+      echohl Error
+      echom 'The declaration for the variable g:gm_no_pull is incorrect'
+      echom 'Example: let g:gm_no_pull = "-np" '
+      echohl None
     endif
   endif
 endfunction
@@ -75,16 +87,34 @@ function! s:RunGitManagerSb() " {{{
     call s:WindowsError()
   else
     let home = s:DefineHome()
-    if has('nvim')
-      au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-      setlocal splitbelow
-      if executable('zsh')
-        exe 'split term://zsh '.home.'/gm'
+    au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    if !exists('g:gm_no_pull')
+      if has('nvim')
+        setlocal splitbelow
+        if executable('zsh')
+          exe 'split term://zsh '.home.'/gm'
+        else
+          exe 'split term://bash '.home.'/gm'
+        endif
       else
-        exe 'split term://bash '.home.'/gm'
+        execute 'belowright term '.home.'/gm'
+      endif
+    elseif g:gm_no_pull ==# '-np'
+      if has('nvim')
+        setlocal splitbelow
+        if executable('zsh')
+          exe 'split term://zsh '.home.'/gm -np'
+        else
+          exe 'split term://bash '.home.'/gm -np'
+        endif
+      else
+        execute 'belowright term '.home.'/gm -np'
       endif
     else
-      execute 'belowright term '.home.'/gm'
+      echohl Error
+      echom 'The declaration for the variable g:gm_no_pull is incorrect'
+      echom 'Example: let g:gm_no_pull = "-np" '
+      echohl None
     endif
   endif
 endfunction
@@ -95,15 +125,32 @@ function! s:RunGitManagerS() " {{{
     call s:WindowsError()
   else
     let home = s:DefineHome()
-    if has('nvim')
-      au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-      if executable('zsh')
-        exe 'split term://zsh '.home.'/gm'
+    au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    if !exists('g:gm_no_pull')
+      if has('nvim')
+        if executable('zsh')
+          exe 'split term://zsh '.home.'/gm'
+        else
+          exe 'split term://bash '.home.'/gm'
+        endif
       else
-        exe 'split term://bash '.home.'/gm'
+        execute 'topleft term '.home.'/gm'
+      endif
+    elseif g:gm_no_pull ==# '-np'
+      if has('nvim')
+        if executable('zsh')
+          exe 'split term://zsh '.home.'/gm -np'
+        else
+          exe 'split term://bash '.home.'/gm -np'
+        endif
+      else
+        execute 'topleft term '.home.'/gm -np'
       endif
     else
-      execute 'topleft term '.home.'/gm'
+      echohl Error
+      echom 'The declaration for the variable g:gm_no_pull is incorrect'
+      echom 'Example: let g:gm_no_pull = "-np" '
+      echohl None
     endif
   endif
 endfunction

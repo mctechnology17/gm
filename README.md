@@ -108,6 +108,50 @@ typing the `n` key to go forward or back.
     main -> current branch
 ```
 
+## Flags
+By default, the `git pull --ff-only` command is activated when you invoke GitManager,
+but if the user wishes, he can deactivate it from vim with the following global variable.
+
+```vim
+    let g:gm_no_pull = '-np'
+```
+
+The user can also deactivate the command `git pull --ff-only` passing the following flags as a parameter:
+
+```bash
+    ./gm --no-pull
+    OR
+    ./gm -np
+```
+
+The reason why this option is activated by default is to avoid conflicts
+when working in the same script, but also if this creates conflict for you,
+you can deactivate it as mentioned above.
+
+Flag disabled message:
+
+```bash
+    hint: Pulling without specifying how to reconcile divergent branches is
+    hint: discouraged. You can squelch this message by running one of the following
+    hint: commands sometime before your next pull:
+    hint:
+    hint:   git config pull.rebase false  # merge (the default strategy)
+    hint:   git config pull.rebase true   # rebase
+    hint:   git config pull.ff only       # fast-forward only
+    hint:
+    hint: You can replace "git config" with "git config --global" to set a default
+    hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+    hint: or --ff-only on the command line to override the configured default per
+    hint: invocation.
+    Already up to date.
+```
+
+Flag enabled message:
+
+```bash
+    Already up to date.
+```
+
 # Command
 You can set GitManager as local command line.
 
