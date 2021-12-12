@@ -120,15 +120,8 @@ Quick start
 
     >
     git clone https://github.com/mctechnology17/gm
-
-    # OPTION 1 as local command line
-    sh gm/bin/gm
-    cmd # option cmd to set command line or alias if you using Linux/MacOS
-    c # set GitManager as command line, a soft link will be generated in this path /usr/local/bin/gm
-    gm # now in a github repository type gm to invoke GitManager as command line and enjoy!
-
-    # OPTION 2 as alias
-    sh gm/bin/gm
+    cd gm/bin
+    ./gm
     cmd # option cmd to set command line or alias if you using Linux/MacOS
     z # select your konsole, example z for zsh shell
     # restart your terminal or load the sources and and type the following
@@ -139,35 +132,49 @@ Quick start
 
 This is the interface that you receive when you activate GitManager:
     >
-    Already up to date.
-    2 files changed, 37 insertions(+), 15 deletions(-)
-    ==================================
-    | GIT Manager by @mctechnology17 |
-    |--------------------------------|
-    | [c]    config credential       |
-    | [y]    add, commit, push       |
-    | [t]    test: add, commit, push |
-    | [ac]   add, commit             |
-    | [p]    push                    |
-    | [g]    name+mail config        |
-    | [sw]   switch branch           |
-    | [st]   status                  |
-    | [l]    see my last commit      |
-    |        press [q] to exit       |
-    | [me]   merge                   |
-    | [mk]   make branch             |
-    | [ali]  alias to bash/zsh/fish  |
-    | [bin]  cheack binary installed |
-    | [all]  list all branches       |
-    |        press [q] to exit       |
-    | [rev]  revert the last commit  |
-    | [del]  delete branch           |
-    | [lic]  license                 |
-    | [h]    help                    |
-    |--------------------------------|
-    | Press ENTER to exit or CTRL+C  |
-    ==================================
-    main ->
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [con]  name+mail config | -> configure your email and your name
+    | [cre]  credential time  | -> the time without passwords is prolonged using http
+    | [y]    add/commit/push  | -> these three commands are run in a row
+    | [ac]   add/commit       | -> these two commands are run in a row
+    | [cp]   commit/push      | -> these two commands are run in a row
+    | [a]    add              | -> add all files that have not been attached
+    | [c]    commit           | -> commit :)
+    | [p]    push             | -> push :)
+    | [test] add/commit/push  | -> RUN THESE THREE COMMANDS WITHOUT ASKING
+    | [h]    help/usage       | -> help, usage :)
+    | [n]    next options     | -> next menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
+    main -> current branch
+<
+
+    >
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [sw]   switch branch    |
+    | [s]    status           |
+    | [l]    last commit      | -> see last commit
+    | [me]   merge            |
+    | [mk]   make branch      |
+    | [cmd]  alias/command    | -> add gm as command line or add alias to bash zsh or fish
+    | [bl]   branches list    | -> lista all branches
+    | [rev]  revert commit    |
+    | [del]  delete branch    |
+    | [lic]  license          |
+    | [n]    previous         | -> previous menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
+    main -> current branch
 <
 
 ============================================================================
