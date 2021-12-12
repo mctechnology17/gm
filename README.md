@@ -51,13 +51,15 @@ GitManager some features:
 git clone https://github.com/mctechnology17/gm
 
 # OPTION 1 as local command line
-sh gm/bin/gm
+cd gm/bin
+./gm
 cmd # option cmd to set command line or alias if you using Linux/MacOS
 c # set GitManager as command line, a soft link will be generated in this path /usr/local/bin/gm
 gm # now in a github repository type gm to invoke GitManager as command line and enjoy!
 
 # OPTION 2 as alias
-sh gm/bin/gm
+cd gm/bin
+./gm
 cmd # option cmd to set command line or alias if you using Linux/MacOS
 z # select your konsole, example z for zsh shell
 # restart your terminal or load the sources and and type the following
