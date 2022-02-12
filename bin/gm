@@ -2,7 +2,7 @@
 # FileName: gm
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
-# Date: 11.12.2021 00:30
+# Date: 12.02.2022 00:30
 # ====================================================
 
 ### color ### {{{
@@ -115,8 +115,15 @@ END
 }
 #}}}
 
-git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
-git_changed="$(git diff --shortstat)"
+git_is_a_repository=$(git remote -v)
+if [ "$git_is_a_repository" = "fatal: not a git repository (or any of the parent directories): .git" ]; then
+  git_branche_prompt="$(echo "NOT A GIT REPOSITORY")"
+  git_changed="$(echo "NOT A GIT REPOSITORY")"
+  git_pull="$(echo "NOT A GIT REPOSITORY")"
+else
+  git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
+  git_changed="$(git diff --shortstat)"
+fi
 
 ### menu_next ### {{{
 menu_next() {
@@ -179,12 +186,14 @@ menu_previous() {
 if [ "$1" = "--no-pull" ] || [ "$1" = "-np" ]; then
   echo "--no-pull or -np is activate"
 else
-  git_pull=$(git pull --ff-only)
-  if [ "$git_pull" = "Already up to date." ]; then
-    echo "$git_pull"
-  else
-    echo "$git_pull"
-    sleep 5
+  if ![ "$git_is_a_repository" = "fatal: not a git repository (or any of the parent directories): .git" ]; then
+    git_pull=$(git pull --ff-only)
+    if [ "$git_pull" = "Already up to date." ]; then
+      echo "$git_pull"
+    else
+      echo "$git_pull"
+      sleep 5
+    fi
   fi
 fi
 menu_next
