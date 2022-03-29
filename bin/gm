@@ -2,7 +2,7 @@
 # FileName: gm
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
-# Date: 12.02.2022 00:30
+# Date: 11.12.2021 00:30
 # ====================================================
 
 ### color ### {{{
@@ -115,15 +115,8 @@ END
 }
 #}}}
 
-git_is_a_repository=$(git remote -v)
-if [ "$git_is_a_repository" = "fatal: not a git repository (or any of the parent directories): .git" ]; then
-  git_branche_prompt="$(echo "NOT A GIT REPOSITORY")"
-  git_changed="$(echo "NOT A GIT REPOSITORY")"
-  git_pull="$(echo "NOT A GIT REPOSITORY")"
-else
-  git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
-  git_changed="$(git diff --shortstat)"
-fi
+git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
+git_changed="$(git diff --shortstat)"
 
 ### menu_next ### {{{
 menu_next() {
@@ -186,14 +179,12 @@ menu_previous() {
 if [ "$1" = "--no-pull" ] || [ "$1" = "-np" ]; then
   echo "--no-pull or -np is activate"
 else
-  if ![ "$git_is_a_repository" = "fatal: not a git repository (or any of the parent directories): .git" ]; then
-    git_pull=$(git pull --ff-only)
-    if [ "$git_pull" = "Already up to date." ]; then
-      echo "$git_pull"
-    else
-      echo "$git_pull"
-      sleep 5
-    fi
+  git_pull=$(git pull --ff-only)
+  if [ "$git_pull" = "Already up to date." ]; then
+    echo "$git_pull"
+  else
+    echo "$git_pull"
+    sleep 5
   fi
 fi
 menu_next
@@ -353,11 +344,12 @@ elif [ "$git_continue" = "cmd" ]; then
   elif [ "$git_alias" = "f" ]; then
     echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
   elif [ "$git_alias" = "c" ]; then
-    echo "Execute this to set GitManager as command line -> ln -sf ${PWD}/gm /usr/local/bin/gm"
+    ln -sf ${PWD}/gm /usr/local/bin/gm
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
+  clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
   echo "|-------------------------|"
