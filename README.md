@@ -311,14 +311,15 @@ installed previously so as not to have any errors.
 ```
 
 # Donate
-If you're enjoying GitManager, feel free to donate or become a sponsor.
+If you're enjoy my work, feel free to donate or become a sponsor.
 - [paypal]
 - [sponsor]
 
-Ambassador and creator/maintainer of vimtools, GitManager and more,
-that are easy to integrate, but very powerful work tools that allow you to
-improve your workflow, integrating with all operating systems and all possible
-shells
+Ambassador and creator/maintainer of vim-better-header,
+vimtools, GitManager and more, that are easy to integrate,
+but very powerful work tools that allow you to
+improve your workflow, integrating with all operating
+systems and all possible shells
 
 Here you can see another recently published project:
 - [vim-better-header] is a better automated template
