@@ -321,7 +321,8 @@ improve your workflow, integrating with all operating systems and all possible
 shells
 
 Here you can see another recently published project:
-- [vimtools]
+- [vim-better-header] is a better automated template
+- [vimtools] functions and settings that will make it easy for you life
 
 
 ## [LICENSE](LICENSE)
@@ -346,3 +347,4 @@ Copyright (c) 2021 Marcos Chow Castro
 [sponsor]: https://github.com/sponsors/mctechnology17
 [paypal]: https://www.paypal.me/mctechnology17
 [readline]: https://github.com/PowerShell/PSReadLine/blob/master/README.md
+[vim-better-header]: https://github.com/mctechnology17/vim-better-header
