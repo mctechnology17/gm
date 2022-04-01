@@ -7,6 +7,7 @@
 
 scriptencoding utf-8
 
+""" define all variable {{{
 if exists('g:gm_loaded')
   finish
 endif
@@ -14,11 +15,16 @@ endif
 let g:gm_loaded =
       \ get(g:, 'gm_loaded', 1)
 
-let s:is_win = has('win32')||has('win64')
+let s:is_win=expand(
+      \ has('win32unix')||has('win32')
+      \ ||has('win64')||has("win16")||has("win95")
+      \ )
 let s:is_vim = !has('nvim')
 let s:is_nvim = has('nvim')
 let s:is_mac = has('mac')
 let s:is_linux = has('unix')
+let s:plugin_path = expand('<sfile>:p:h:h')
+" }}}
 
 function! s:WindowsError() " {{{
     echohl Error
@@ -50,27 +56,27 @@ function! s:RunGitManager() " {{{
   if s:is_win
     call s:WindowsError()
   else
-    let home = s:DefineHome()
+    " let home = s:DefineHome()
     au BufEnter * if &buftype == 'terminal' | :startinsert | endif
     if !exists('g:gm_no_pull')
       if has('nvim')
         if executable('zsh')
-          exe 'vsplit term://zsh '.home.'/gm'
+          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm'
         else
-          exe 'vsplit term://bash '.home.'/gm'
+          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm'
         endif
       else
-        execute 'vert term '.home.'/gm'
+        execute 'vert term '.s:plugin_path.'/bin/gm'
       endif
     elseif g:gm_no_pull ==# '-np'
       if has('nvim')
         if executable('zsh')
-          exe 'vsplit term://zsh '.home.'/gm -np'
+          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm -np'
         else
-          exe 'vsplit term://bash '.home.'/gm -np'
+          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm -np'
         endif
       else
-        execute 'vert term '.home.'/gm -np'
+        execute 'vert term '.s:plugin_path.'/bin/gm -np'
       endif
     else
       echohl Error
