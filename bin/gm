@@ -4,7 +4,7 @@
 # GitHub: https://github.com/mctechnology17
 # Date: 11.12.2021 00:30
 # ====================================================
-
+# see: git add --all . || true
 ### color ### {{{
 BOLD="$(tput bold 2>/dev/null || printf '')"
 GREY="$(tput setaf 0 2>/dev/null || printf '')"
@@ -17,7 +17,6 @@ MAGENTA="$(tput setaf 5 2>/dev/null || printf '')"
 NO_COLOR="$(tput sgr0 2>/dev/null || printf '')"
 BLACKBG="printf '\e[1;40;92m'"
 #}}}
-
 ### git exist? ### {{{
 which git > /dev/null
 if test $? -ne 0
@@ -26,7 +25,6 @@ then
   exit 1
 fi
 #}}}
-
 ### copyright ### {{{
 copyright() {
 cat <<END
@@ -53,7 +51,6 @@ END
   exit 1
 }
 #}}}
-
 ### usage ### {{{
 usage (){
 cat <<END
@@ -114,12 +111,10 @@ END
   exit 1
 }
 #}}}
-
 ### branch prompt and changed ### {{{
 git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
 git_changed="$(git diff --shortstat)"
 #}}}
-
 ### menu_next ### {{{
 menu_next() {
   clear
@@ -149,7 +144,6 @@ menu_next() {
   fi
 }
 #}}}
-
 ### menu_previous ### {{{
 menu_previous() {
   clear
@@ -179,11 +173,11 @@ menu_previous() {
   fi
 }
 #}}}
-
 ### menu_main ### {{{
 if [ "$1" = "--no-pull" ] || [ "$1" = "-np" ]; then
   echo "--no-pull or -np is activate"
 else
+  # git status 2>/dev/null
   git_pull=$(git pull --ff-only)
   if [ "$git_pull" = "Already up to date." ]; then
     echo "$git_pull"
@@ -194,7 +188,6 @@ else
 fi
 menu_next
 #}}}
-
 ### git_continue ### {{{
 if [ "$git_continue" = "y" ]; then # y {{{
   clear
@@ -234,7 +227,10 @@ if [ "$git_continue" = "y" ]; then # y {{{
 elif [ "$git_continue" = "lg" ]; then # lg {{{
   git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   exit 0 #}}}
-elif [ "$git_continue" = "ch" ]; then # lg {{{
+elif [ "$git_continue" = "vd" ]; then # lg {{{
+  git difftool
+  exit 0 #}}}
+elif [ "$git_continue" = "ch" ]; then # ch {{{
   git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   exit 0 #}}}
 elif [ "$git_continue" = "p" ]; then # p {{{

@@ -4,9 +4,7 @@
 " GitHub: https://github.com/mctechnology17
 " Date: 11.12.2021 13:00
 " ====================================================
-
 scriptencoding utf-8
-
 """ define all variable {{{
 if exists('g:gm_loaded')
   finish
@@ -25,7 +23,6 @@ let s:is_mac = has('mac')
 let s:is_linux = has('unix')
 let s:plugin_path = expand('<sfile>:p:h:h')
 " }}}
-
 function! s:WindowsError() " {{{
     echohl Error
     echom 'Try with direct keybin with powershell'
@@ -34,7 +31,6 @@ function! s:WindowsError() " {{{
     echohl None
 endfunction
 "}}}
-
 function! s:DefineHome() " {{{
   if s:is_vim && !has('terminal')
     throw 'terminal feature not supported by current vim.'
@@ -51,7 +47,6 @@ function! s:DefineHome() " {{{
   endif
 endfunction
 "}}}
-
 function! s:RunGitManager() " {{{
   if s:is_win
     call s:WindowsError()
@@ -87,7 +82,6 @@ function! s:RunGitManager() " {{{
   endif
 endfunction
 "}}}
-
 function! s:RunGitManagerSb() " {{{
   if s:is_win
     call s:WindowsError()
@@ -125,7 +119,6 @@ function! s:RunGitManagerSb() " {{{
   endif
 endfunction
 "}}}
-
 function! s:RunGitManagerS() " {{{
   if s:is_win
     call s:WindowsError()
@@ -161,9 +154,10 @@ function! s:RunGitManagerS() " {{{
   endif
 endfunction
 "}}}
-
+""" commands {{{
 command! -nargs=0 GitManager       :call s:RunGitManager()
 command! -nargs=0 GitManagerS      :call s:RunGitManagerS()
 command! -nargs=0 GitManagerSb     :call s:RunGitManagerSb()
+"}}}
 
 " vim: set sw=2 ts=2 sts=2 et ft=vim fdm=marker:
