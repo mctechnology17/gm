@@ -35,7 +35,7 @@ CONTENTS                                                *gm-contents*
 INTRODUCTION                                                 *gm-intro*
 
 `GitManager` is a assistant multi platform which can be combined
-with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVim`.
+with your `zsh/bash/fish/Windows Terminal Preview` or with your editor `vim/vi/nvim/Gvim/MacVim`.
 
 `GitManager` is fast and lightweight and no outside dependencies.
 
@@ -44,10 +44,10 @@ with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVi
 It can be integrated into all operating systems, so far tested on Linux and
 some of its distributions, such as Kali, Ubuntu, Fedora, OpenSuse, of course it
 was tested on MacOs, as well as on Windows working with full compatibility with
-PowerShell and WSL2.
+Windows Terminal Preview and WSL2.
 
 It should be noted that GitManager is compatible with the SHELLS `fish`, `zsh`,
-`sh`, `bash` and `PowerShell` (tested so far)
+`sh`, `bash` and `Windows Terminal Preview` (tested so far)
 
 ============================================================================
 FEATURES                                                  *gm-features*
@@ -56,10 +56,10 @@ GitManager some features:
 - friendly user interface
 - easy use
 - multi platform (OSX, Linux, Docker, Windows, WSL2)
-- multi compatibility with shells (bash, zsh, fish, PowerShell, sh, etc.)
-- easy integration (keybind working full on prompt with zsh and PowerShell)
-- easy alias integration (zsh, fish, bash, PowerShell etc.)
-- bindkey for `zsh` and `powershell`
+- multi compatibility with shells (bash, zsh, fish, Windows Terminal Preview, sh, etc.)
+- easy integration (keybind working full on prompt with zsh and Windows Terminal Preview)
+- easy alias integration (zsh, fish, bash, Windows Terminal Preview etc.)
+- bindkey for `zsh` and `Windows Terminal Preview`
 - completely intuitive interface
 - status bar and custom prompt with current branch
 - color feedback
@@ -120,15 +120,8 @@ Quick start
 
     >
     git clone https://github.com/mctechnology17/gm
-
-    # OPTION 1 as local command line
-    sh gm/bin/gm
-    cmd # option cmd to set command line or alias if you using Linux/MacOS
-    c # set GitManager as command line, a soft link will be generated in this path /usr/local/bin/gm
-    gm # now in a github repository type gm to invoke GitManager as command line and enjoy!
-
-    # OPTION 2 as alias
-    sh gm/bin/gm
+    cd gm/bin
+    ./gm.sh
     cmd # option cmd to set command line or alias if you using Linux/MacOS
     z # select your konsole, example z for zsh shell
     # restart your terminal or load the sources and and type the following
@@ -139,35 +132,49 @@ Quick start
 
 This is the interface that you receive when you activate GitManager:
     >
-    Already up to date.
-    2 files changed, 37 insertions(+), 15 deletions(-)
-    ==================================
-    | GIT Manager by @mctechnology17 |
-    |--------------------------------|
-    | [c]    config credential       |
-    | [y]    add, commit, push       |
-    | [t]    test: add, commit, push |
-    | [ac]   add, commit             |
-    | [p]    push                    |
-    | [g]    name+mail config        |
-    | [sw]   switch branch           |
-    | [st]   status                  |
-    | [l]    see my last commit      |
-    |        press [q] to exit       |
-    | [me]   merge                   |
-    | [mk]   make branch             |
-    | [ali]  alias to bash/zsh/fish  |
-    | [bin]  cheack binary installed |
-    | [all]  list all branches       |
-    |        press [q] to exit       |
-    | [rev]  revert the last commit  |
-    | [del]  delete branch           |
-    | [lic]  license                 |
-    | [h]    help                    |
-    |--------------------------------|
-    | Press ENTER to exit or CTRL+C  |
-    ==================================
-    main ->
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [con]  name+mail config | -> configure your email and your name
+    | [cre]  credential time  | -> the time without passwords is prolonged using http
+    | [y]    add/commit/push  | -> these three commands are run in a row
+    | [ac]   add/commit       | -> these two commands are run in a row
+    | [cp]   commit/push      | -> these two commands are run in a row
+    | [a]    add              | -> add all files that have not been attached
+    | [c]    commit           | -> commit :)
+    | [p]    push             | -> push :)
+    | [test] add/commit/push  | -> RUN THESE THREE COMMANDS WITHOUT ASKING
+    | [h]    help/usage       | -> help, usage :)
+    | [n]    next options     | -> next menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
+    main -> current branch
+<
+
+    >
+    Already up to date. -> by default a git pull is applied, to avoid having conflicts with files
+    2 files changed, 37 insertions(+), 15 deletions(-) -> status bar
+    ===========================
+    |        GitManager       |
+    |-------------------------|
+    | [sw]   switch branch    |
+    | [s]    status           |
+    | [l]    last commit      | -> see last commit
+    | [me]   merge            |
+    | [mk]   make branch      |
+    | [cmd]  alias/command    | -> add gm as command line or add alias to bash zsh or fish
+    | [bl]   branches list    | -> lista all branches
+    | [rev]  revert commit    |
+    | [del]  delete branch    |
+    | [lic]  license          |
+    | [n]    previous         | -> previous menu
+    |-------------------------|
+    | Exit: ENTER or CTRL+C   |
+    ===========================
+    main -> current branch
 <
 
 ============================================================================
@@ -225,7 +232,7 @@ LOCAL COMMAND                                        *gm-local-command-line*
 You can set GitManager as local command line.
 
    >
-    ln -sf ${PWD}/gm /usr/local/bin/gm
+    ln -sf ${PWD}/gm.sh /usr/local/bin/gm
 <
 
 
@@ -241,22 +248,22 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
    >
-    echo "$(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
+    echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.zshrc)"
 <
 
 - For bash
    >
-    echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
+    echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.bashrc)"
 <
 
 - For fish
    >
-    echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
+    echo "$(echo "alias push "$PWD/gm.sh"" >> ~/.config/fish/config.fish)"
 <
 
-- For powershell
+- For Windows Terminal Preview
    >
-    set-alias push "C:\Users\home\gm\bin\gm"
+    set-alias push "C:\Users\home\gm\bin\gm.sh"
 <
 
 ============================================================================
@@ -271,16 +278,19 @@ with the key combination `CTRL+p`.
     bindkey -s '^p' 'push \n'
 <
 
-- For powershell
+- For Windows Terminal Preview
+It is important to have git installed on windows or some equivalent capable of
+running BashScript on Windows for the binary to run successfully.
+
 You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
-For a better integration in powershell, you can add the following lines,
+For a better integration in Windows Terminal Preview, you can add the following lines,
 for this it is necessary to have the `PSReadLine: https://github.com/PowerShell/PSReadLine/blob/master/README.md`
 module installed.
 
 In this way, you can invoke GitManager with the following key combinations:
-`CTRL+p` when you are at the prompt using powershell
+`CTRL+p` when you are at the prompt using Windows Terminal Preview
 and at the same time when you are in a github or gitlab repository.
 
    >
@@ -291,7 +301,7 @@ and at the same time when you are in a github or gitlab repository.
                              -LongDescription "GitManager" `
                              -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm")
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm.sh")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 <
@@ -347,7 +357,7 @@ the repository in your home directory, then just copy the following mapping,
 keep in mind to have Floaterm installed previously so as not to have any errors
 
     >
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm.sh<CR>
 <
 
                                                   *g:gm_set_path*
@@ -361,6 +371,51 @@ and with the expand function, inside the function already given by vim resolve.
     >
     let g:gm_set_path = resolve(expand('~/gm/bin'))
     let g:gm_set_path = resolve($HOME."/gm/bin")
+<
+
+                                                  *g:gm_no_pull*
+
+By default, the `git pull --ff-only` command is activated when you invoke GitManager,
+but if the user wishes, he can deactivate it from vim with the following global variable.
+
+    >
+    let g:gm_no_pull = '-np'
+<
+
+The user can also deactivate the command `git pull --ff-only` passing the following flags as a parameter:
+
+    >
+    ./gm.sh --no-pull
+    OR
+    ./gm.sh -np
+<
+
+The reason why this option is activated by default is to avoid conflicts
+when working in the same script, but also if this creates conflict for you,
+you can deactivate it as mentioned above.
+
+Flag disabled message:
+
+    >
+    hint: Pulling without specifying how to reconcile divergent branches is
+    hint: discouraged. You can squelch this message by running one of the following
+    hint: commands sometime before your next pull:
+    hint:
+    hint:   git config pull.rebase false  # merge (the default strategy)
+    hint:   git config pull.rebase true   # rebase
+    hint:   git config pull.ff only       # fast-forward only
+    hint:
+    hint: You can replace "git config" with "git config --global" to set a default
+    hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+    hint: or --ff-only on the command line to override the configured default per
+    hint: invocation.
+    Already up to date.
+<
+
+Flag enabled message:
+
+    >
+    Already up to date.
 <
 
 ============================================================================

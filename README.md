@@ -17,8 +17,8 @@
 ----
 
 # Intro
-`GitManager` is a assistant multi platform which can be combined
-with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVim`.
+`GitManager` is a manager for GIT multi platform which can be combined
+with your `zsh/bash/fish/Windows Terminal Preview` or with your editor `vim/vi/nvim/Gvim/MacVim`.
 
 `GitManager` is fast and lightweight and no outside dependencies.
 
@@ -27,19 +27,19 @@ with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVi
 It can be integrated into all operating systems, so far tested on Linux and
 some of its distributions, such as Kali, Ubuntu, Fedora, OpenSuse, of course it
 was tested on MacOs, as well as on Windows working with full compatibility with
-PowerShell and WSL2.
+Windows Terminal Preview and WSL2.
 
 It should be noted that GitManager is compatible with the SHELLS `fish`, `zsh`,
-`sh`, `bash` and `PowerShell` (tested so far)
+`sh`, `bash` and `Windows Terminal Preview` (tested so far)
 
 GitManager some features:
 - friendly user interface
 - easy use
 - multi platform (OSX, Linux, Docker, Windows, WSL2)
-- multi compatibility with shells (bash, zsh, fish, PowerShell, sh, etc.)
-- easy integration (keybind working full on prompt with zsh and PowerShell)
-- easy alias integration (zsh, fish, bash, PowerShell etc.)
-- bindkey for `zsh` and `powershell`
+- multi compatibility with shells (bash, zsh, fish, Windows Terminal Preview, sh, etc.)
+- easy integration (keybind working full on prompt with zsh and Windows Terminal Preview)
+- easy alias integration (zsh, fish, bash, Windows Terminal Preview etc.)
+- bindkey for `zsh` and `Windows Terminal Preview`
 - completely intuitive interface
 - status bar and custom prompt with current branch
 - color feedback
@@ -49,15 +49,8 @@ GitManager some features:
 ## Quick start
 ```bash
 git clone https://github.com/mctechnology17/gm
-
-# OPTION 1 as local command line
-sh gm/bin/gm
-cmd # option cmd to set command line or alias if you using Linux/MacOS
-c # set GitManager as command line, a soft link will be generated in this path /usr/local/bin/gm
-gm # now in a github repository type gm to invoke GitManager as command line and enjoy!
-
-# OPTION 2 as alias
-sh gm/bin/gm
+cd gm/bin
+./gm.sh
 cmd # option cmd to set command line or alias if you using Linux/MacOS
 z # select your konsole, example z for zsh shell
 # restart your terminal or load the sources and and type the following
@@ -115,11 +108,55 @@ typing the `n` key to go forward or back.
     main -> current branch
 ```
 
+## Flags
+By default, the `git pull --ff-only` command is activated when you invoke GitManager,
+but if the user wishes, he can deactivate it from vim with the following global variable.
+
+```vim
+    let g:gm_no_pull = '-np'
+```
+
+The user can also deactivate the command `git pull --ff-only` passing the following flags as a parameter:
+
+```bash
+    ./gm.sh --no-pull
+    OR
+    ./gm.sh -np
+```
+
+The reason why this option is activated by default is to avoid conflicts
+when working in the same script, but also if this creates conflict for you,
+you can deactivate it as mentioned above.
+
+Flag disabled message:
+
+```bash
+    hint: Pulling without specifying how to reconcile divergent branches is
+    hint: discouraged. You can squelch this message by running one of the following
+    hint: commands sometime before your next pull:
+    hint:
+    hint:   git config pull.rebase false  # merge (the default strategy)
+    hint:   git config pull.rebase true   # rebase
+    hint:   git config pull.ff only       # fast-forward only
+    hint:
+    hint: You can replace "git config" with "git config --global" to set a default
+    hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+    hint: or --ff-only on the command line to override the configured default per
+    hint: invocation.
+    Already up to date.
+```
+
+Flag enabled message:
+
+```bash
+    Already up to date.
+```
+
 # Command
 You can set GitManager as local command line.
 
 ```bash
-    ln -sf ${PWD}/gm /usr/local/bin/gm
+    ln -sf ${PWD}/gm.sh /usr/local/bin/gm
 ```
 
 # Alias
@@ -131,22 +168,22 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
 ```bash
-echo "$(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
+echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.zshrc)"
 ```
 
 - For bash
 ```bash
-echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
+echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.bashrc)"
 ```
 
 - For fish
 ```bash
-echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "$PWD/gm.sh"" >> ~/.config/fish/config.fish)"
 ```
 
-- For powershell
+- For Windows Terminal Preview
 ```powershell
-set-alias push "C:\Users\home\gm\bin\gm"
+set-alias push "C:\Users\home\gm\bin\gm.sh"
 ```
 
 # Bindkey
@@ -160,16 +197,19 @@ with the key combination `CTRL+p` or `CTRL+g` here are some examples.
   bindkey -s '^g' 'gm \n'
 ```
 
-- For powershell
+- For Windows Terminal Preview
+It is important to have git installed on windows or some equivalent capable of
+running BashScript on Windows for the binary to run successfully.
+
 You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
-For a better integration in powershell, you can add the following lines,
+For a better integration in Windows Terminal Preview, you can add the following lines,
 for this it is necessary to have the [PSReadLine][readline]
 module installed.
 
 In this way, you can invoke GitManager with the following key combinations:
-`CTRL+p` when you are at the prompt using powershell
+`CTRL+p` when you are at the prompt using Windows Terminal Preview
 and at the same time when you are in a github or gitlab repository.
 
 ```powershell
@@ -180,7 +220,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+p `
                          -LongDescription "GitManager" `
                          -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm.sh")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 ```
@@ -270,21 +310,23 @@ then just copy the following mapping, keep in mind to have Floaterm
 installed previously so as not to have any errors.
 
 ```vim
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm.sh<CR>
 ```
 
 # Donate
-If you're enjoying GitManager, feel free to donate or become a sponsor.
+If you're enjoy my work, feel free to donate or become a sponsor.
 - [paypal]
 - [sponsor]
 
-Ambassador and creator/maintainer of vimtools, GitManager and more,
-that are easy to integrate, but very powerful work tools that allow you to
-improve your workflow, integrating with all operating systems and all possible
-shells
+Ambassador and creator/maintainer of vim-better-header,
+vimtools, GitManager and more, that are easy to integrate,
+but very powerful work tools that allow you to
+improve your workflow, integrating with all operating
+systems and all possible shells
 
 Here you can see another recently published project:
-- [vimtools]
+- [vim-better-header] is a better automated template
+- [vimtools] functions and settings that will make it easy for you life
 
 
 ## [LICENSE](LICENSE)
@@ -309,3 +351,4 @@ Copyright (c) 2021 Marcos Chow Castro
 [sponsor]: https://github.com/sponsors/mctechnology17
 [paypal]: https://www.paypal.me/mctechnology17
 [readline]: https://github.com/PowerShell/PSReadLine/blob/master/README.md
+[vim-better-header]: https://github.com/mctechnology17/vim-better-header

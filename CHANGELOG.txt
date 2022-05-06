@@ -1,6 +1,16 @@
 Changelog file for Structures extra.
 https://github.com/mctechnology17/gm/blob/master/CHANGELOG.txt
 
+# Structures 0.0.1-beta4 (April 1, 2022)
+=======================================
+
+# List of exciting new features
+
++ NEW FEATURES
+ - [lg]   logs
+ - [ch]   commit history
+ - now processes in vim terminate correctly
+
 # Structures 0.0.1-beta3 (December 11, 2021)
 =======================================
 

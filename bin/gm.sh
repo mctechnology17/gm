@@ -4,7 +4,7 @@
 # GitHub: https://github.com/mctechnology17
 # Date: 11.12.2021 00:30
 # ====================================================
-
+# see: git add --all . || true
 ### color ### {{{
 BOLD="$(tput bold 2>/dev/null || printf '')"
 GREY="$(tput setaf 0 2>/dev/null || printf '')"
@@ -17,7 +17,6 @@ MAGENTA="$(tput setaf 5 2>/dev/null || printf '')"
 NO_COLOR="$(tput sgr0 2>/dev/null || printf '')"
 BLACKBG="printf '\e[1;40;92m'"
 #}}}
-
 ### git exist? ### {{{
 which git > /dev/null
 if test $? -ne 0
@@ -26,7 +25,6 @@ then
   exit 1
 fi
 #}}}
-
 ### copyright ### {{{
 copyright() {
 cat <<END
@@ -53,7 +51,6 @@ END
   exit 1
 }
 #}}}
-
 ### usage ### {{{
 usage (){
 cat <<END
@@ -114,10 +111,10 @@ END
   exit 1
 }
 #}}}
-
+### branch prompt and changed ### {{{
 git_branche_prompt=$(git rev-parse --abbrev-ref HEAD)
 git_changed="$(git diff --shortstat)"
-
+#}}}
 ### menu_next ### {{{
 menu_next() {
   clear
@@ -133,6 +130,7 @@ menu_next() {
   echo "| [a]    add              |"
   echo "| [c]    commit           |"
   echo "| [p]    push             |"
+  echo "| [lg]   logs             |"
   echo "| [test] add/commit/push  |"
   echo "| [h]    help/usage       |"
   echo "| [n]    next options     |"
@@ -146,7 +144,6 @@ menu_next() {
   fi
 }
 #}}}
-
 ### menu_previous ### {{{
 menu_previous() {
   clear
@@ -156,6 +153,7 @@ menu_previous() {
   echo "|-------------------------|"
   echo "| [sw]   switch branch    |"
   echo "| [s]    status           |"
+  echo "| [ch]   commit history   |"
   echo "| [l]    last commit      |"
   echo "| [me]   merge            |"
   echo "| [mk]   make branch      |"
@@ -175,10 +173,11 @@ menu_previous() {
   fi
 }
 #}}}
-
+### menu_main ### {{{
 if [ "$1" = "--no-pull" ] || [ "$1" = "-np" ]; then
   echo "--no-pull or -np is activate"
 else
+  # git status 2>/dev/null
   git_pull=$(git pull --ff-only)
   if [ "$git_pull" = "Already up to date." ]; then
     echo "$git_pull"
@@ -188,9 +187,9 @@ else
   fi
 fi
 menu_next
-
+#}}}
 ### git_continue ### {{{
-if [ "$git_continue" = "y" ]; then
+if [ "$git_continue" = "y" ]; then # y {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -224,7 +223,17 @@ if [ "$git_continue" = "y" ]; then
   echo "| [Commit]  -> $git_update"
   echo "| [Branche] -> $git_branche"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "p" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "lg" ]; then # lg {{{
+  git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  exit 0 #}}}
+elif [ "$git_continue" = "vd" ]; then # lg {{{
+  git difftool
+  exit 0 #}}}
+elif [ "$git_continue" = "ch" ]; then # ch {{{
+  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  exit 0 #}}}
+elif [ "$git_continue" = "p" ]; then # p {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -245,9 +254,11 @@ elif [ "$git_continue" = "p" ]; then
   echo "| [Commit]  -> $git_update"
   echo "| [Branche] -> $git_branche"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "a" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "a" ]; then # a {{{
   git add -A
-elif [ "$git_continue" = "c" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "c" ]; then # c {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -268,7 +279,8 @@ elif [ "$git_continue" = "c" ]; then
   echo "| [Commit]  -> $git_update"
   echo "| [Branche] -> $git_branche"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "ac" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "ac" ]; then # ac {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -290,7 +302,8 @@ elif [ "$git_continue" = "ac" ]; then
   echo "| [Commit]  -> $git_update"
   echo "| [Branche] -> $git_branche"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "con" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "con" ]; then # con {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -323,7 +336,8 @@ elif [ "$git_continue" = "con" ]; then
   echo "| [User]    -> $(git config user.name)"
   echo "| [Email]   -> $(git config user.email)"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "cmd" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "cmd" ]; then # cmd {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -344,11 +358,12 @@ elif [ "$git_continue" = "cmd" ]; then
   elif [ "$git_alias" = "f" ]; then
     echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
   elif [ "$git_alias" = "c" ]; then
-    echo "Execute this to set GitManager as command line -> ln -sf ${PWD}/gm /usr/local/bin/gm"
+    ln -sf ${PWD}/gm /usr/local/bin/gm
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
   fi
+  clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
   echo "|-------------------------|"
@@ -361,11 +376,12 @@ elif [ "$git_continue" = "cmd" ]; then
   echo "| IMPORTANT: Restart your |"
   echo "| terminal to take effect |"
   echo "+-------------------------+${NO_COLOR}"
-elif [ "$git_continue" = "lic" ]; then
-  copyright
-elif [ "$git_continue" = "h" ]; then
-  usage
-elif [ "$git_continue" = "del" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "lic" ]; then # lic {{{
+  copyright #}}}
+elif [ "$git_continue" = "h" ]; then # h {{{
+  usage #}}}
+elif [ "$git_continue" = "del" ]; then # del {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -390,11 +406,12 @@ elif [ "$git_continue" = "del" ]; then
     printf "$git_branche_prompt ->${NO_COLOR} "
     read -r git_tmp
     git branch -D $git_tmp
+    exit 0
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
-  fi
-elif [ "$git_continue" = "mk" ]; then
+  fi #}}}
+elif [ "$git_continue" = "mk" ]; then # mk {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -407,7 +424,8 @@ elif [ "$git_continue" = "mk" ]; then
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git branch $git_tmp
-elif [ "$git_continue" = "me" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "me" ]; then # me {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -420,7 +438,8 @@ elif [ "$git_continue" = "me" ]; then
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git merge $git_tmp
-elif [ "$git_continue" = "sw" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "sw" ]; then # sw {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -433,7 +452,8 @@ elif [ "$git_continue" = "sw" ]; then
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_tmp
   git switch $git_tmp
-elif [ "$git_continue" = "rev" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "rev" ]; then # rev {{{
   clear
   echo "${YELLOW}==========================="
   echo "|        GitManager       |"
@@ -447,14 +467,16 @@ elif [ "$git_continue" = "rev" ]; then
   read -r git_del
   if [ "$git_del" = "y" ]; then
     git revert HEAD~1..HEAD
+    exit 0
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
-  fi
-elif [ "$git_continue" = "bl" ]; then
+  fi #}}}
+elif [ "$git_continue" = "bl" ]; then # bl {{{
   clear
   git branch -a
-elif [ "$git_continue" = "cre" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "cre" ]; then # cre {{{
   clear
   git config credential.helper store
   echo "${YELLOW}==========================="
@@ -475,28 +497,34 @@ elif [ "$git_continue" = "cre" ]; then
   if [ "$git_cre" = "h" ]; then
     git config --global credential.helper 'cache --timeout 3600'
     echo "${YELLOW}Time extended to 1 hour"
+    exit 0
   elif [ "$git_cre" = "hh" ]; then
     git config --global credential.helper 'cache --timeout 7200'
     echo "${YELLOW}Time extended to 2 hour"
+    exit 0
   elif [ "$git_cre" = "d" ]; then
     git config --global credential.helper 'cache --timeout 86400'
     echo "${YELLOW}Time extended to 1 day"
+    exit 0
   elif [ "$git_cre" = "dd" ]; then
     git config --global credential.helper 'cache --timeout 172800'
     echo "${YELLOW}Time extended to 2 day"
+    exit 0
   elif [ "$git_cre" = "def" ]; then
     git config --global credential.helper 'cache --timeout 900'
     echo "${YELLOW}Time extended to 15 Min(default)"
+    exit 0
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
-  fi
-elif [ "$git_continue" = "s" ]; then
+  fi #}}}
+elif [ "$git_continue" = "s" ]; then # s {{{
   clear
   echo "${BOLD}${YELLOW}$(git diff --shortstat) ${NO_COLOR}"
   git status -v -s -b -u --column
   # git diff --stat HEAD^ HEAD
-elif [ "$git_continue" = "test" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "test" ]; then # test {{{
   clear
   git_test="$(git rev-parse --abbrev-ref HEAD)"
   git add -A && git commit -m "test" && git push -u origin $git_test
@@ -508,13 +536,15 @@ elif [ "$git_continue" = "test" ]; then
   echo "| [Commit]  -> test"
   echo "| [Branche] -> $git_test"
   echo "+--------------------------${NO_COLOR}"
-elif [ "$git_continue" = "l" ]; then
+  exit 0 #}}}
+elif [ "$git_continue" = "l" ]; then # l {{{
   clear
   git log -1 --pretty=fuller --graph --date=short
-else
+  exit 0 #}}}
+else # {{{
   echo "${YELLOW}No change made!${NO_COLOR}"
   exit 1
-fi
+fi #}}}
 #}}}
 
 # vim: set sw=2 ts=2 sts=2 et ft=sh fdm=marker:
