@@ -50,7 +50,7 @@ GitManager some features:
 ```bash
 git clone https://github.com/mctechnology17/gm
 cd gm/bin
-./gm
+./gm.sh
 cmd # option cmd to set command line or alias if you using Linux/MacOS
 z # select your konsole, example z for zsh shell
 # restart your terminal or load the sources and and type the following
@@ -119,9 +119,9 @@ but if the user wishes, he can deactivate it from vim with the following global 
 The user can also deactivate the command `git pull --ff-only` passing the following flags as a parameter:
 
 ```bash
-    ./gm --no-pull
+    ./gm.sh --no-pull
     OR
-    ./gm -np
+    ./gm.sh -np
 ```
 
 The reason why this option is activated by default is to avoid conflicts
@@ -156,7 +156,7 @@ Flag enabled message:
 You can set GitManager as local command line.
 
 ```bash
-    ln -sf ${PWD}/gm /usr/local/bin/gm
+    ln -sf ${PWD}/gm.sh /usr/local/bin/gm
 ```
 
 # Alias
@@ -168,22 +168,22 @@ assuming your rc-files are at their default addresses.
 
 - For zsh
 ```bash
-echo "$(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
+echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.zshrc)"
 ```
 
 - For bash
 ```bash
-echo "$(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
+echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.bashrc)"
 ```
 
 - For fish
 ```bash
-echo "$(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
+echo "$(echo "alias push "$PWD/gm.sh"" >> ~/.config/fish/config.fish)"
 ```
 
 - For powershell
 ```powershell
-set-alias push "C:\Users\home\gm\bin\gm"
+set-alias push "C:\Users\home\gm\bin\gm.sh"
 ```
 
 # Bindkey
@@ -217,7 +217,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+p `
                          -LongDescription "GitManager" `
                          -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("C:\Users\home\gm\bin\gm.sh")
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 ```
@@ -307,7 +307,7 @@ then just copy the following mapping, keep in mind to have Floaterm
 installed previously so as not to have any errors.
 
 ```vim
-    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm<CR>
+    nnoremap <Leader>p :FloatermNew --height=0.8 --width=0.4 --position=center $HOME/gm/bin/gm.sh<CR>
 ```
 
 # Donate

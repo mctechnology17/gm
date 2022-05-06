@@ -56,22 +56,22 @@ function! s:RunGitManager() " {{{
     if !exists('g:gm_no_pull')
       if has('nvim')
         if executable('zsh')
-          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm'
+          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm.sh'
         else
-          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm'
+          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm.sh'
         endif
       else
-        execute 'vert term '.s:plugin_path.'/bin/gm'
+        execute 'vert term '.s:plugin_path.'/bin/gm.sh'
       endif
     elseif g:gm_no_pull ==# '-np'
       if has('nvim')
         if executable('zsh')
-          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm -np'
+          exe 'vsplit term://zsh '.s:plugin_path.'/bin/gm.sh -np'
         else
-          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm -np'
+          exe 'vsplit term://bash '.s:plugin_path.'/bin/gm.sh -np'
         endif
       else
-        execute 'vert term '.s:plugin_path.'/bin/gm -np'
+        execute 'vert term '.s:plugin_path.'/bin/gm.sh -np'
       endif
     else
       echohl Error
@@ -92,23 +92,23 @@ function! s:RunGitManagerSb() " {{{
       if has('nvim')
         setlocal splitbelow
         if executable('zsh')
-          exe 'split term://zsh '.home.'/gm'
+          exe 'split term://zsh '.home.'/gm.sh'
         else
-          exe 'split term://bash '.home.'/gm'
+          exe 'split term://bash '.home.'/gm.sh'
         endif
       else
-        execute 'belowright term '.home.'/gm'
+        execute 'belowright term '.home.'/gm.sh'
       endif
     elseif g:gm_no_pull ==# '-np'
       if has('nvim')
         setlocal splitbelow
         if executable('zsh')
-          exe 'split term://zsh '.home.'/gm -np'
+          exe 'split term://zsh '.home.'/gm.sh -np'
         else
-          exe 'split term://bash '.home.'/gm -np'
+          exe 'split term://bash '.home.'/gm.sh -np'
         endif
       else
-        execute 'belowright term '.home.'/gm -np'
+        execute 'belowright term '.home.'/gm.sh -np'
       endif
     else
       echohl Error
@@ -128,22 +128,22 @@ function! s:RunGitManagerS() " {{{
     if !exists('g:gm_no_pull')
       if has('nvim')
         if executable('zsh')
-          exe 'split term://zsh '.home.'/gm'
+          exe 'split term://zsh '.home.'/gm.sh'
         else
-          exe 'split term://bash '.home.'/gm'
+          exe 'split term://bash '.home.'/gm.sh'
         endif
       else
-        execute 'topleft term '.home.'/gm'
+        execute 'topleft term '.home.'/gm.sh'
       endif
     elseif g:gm_no_pull ==# '-np'
       if has('nvim')
         if executable('zsh')
-          exe 'split term://zsh '.home.'/gm -np'
+          exe 'split term://zsh '.home.'/gm.sh -np'
         else
-          exe 'split term://bash '.home.'/gm -np'
+          exe 'split term://bash '.home.'/gm.sh -np'
         endif
       else
-        execute 'topleft term '.home.'/gm -np'
+        execute 'topleft term '.home.'/gm.sh -np'
       endif
     else
       echohl Error
