@@ -198,6 +198,9 @@ with the key combination `CTRL+p` or `CTRL+g` here are some examples.
 ```
 
 - For Windows Terminal Preview
+It is important to have git installed on windows or some equivalent capable of
+running BashScript on Windows for the binary to run successfully.
+
 You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
