@@ -17,8 +17,8 @@
 ----
 
 # Intro
-`GitManager` is a assistant multi platform which can be combined
-with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVim`.
+`GitManager` is a manager for GIT multi platform which can be combined
+with your `zsh/bash/fish/Windows Terminal Preview` or with your editor `vim/vi/nvim/Gvim/MacVim`.
 
 `GitManager` is fast and lightweight and no outside dependencies.
 
@@ -27,19 +27,19 @@ with your `zsh/bash/fish/powershell` or with your editor `vim/vi/nvim/Gvim/MacVi
 It can be integrated into all operating systems, so far tested on Linux and
 some of its distributions, such as Kali, Ubuntu, Fedora, OpenSuse, of course it
 was tested on MacOs, as well as on Windows working with full compatibility with
-PowerShell and WSL2.
+Windows Terminal Preview and WSL2.
 
 It should be noted that GitManager is compatible with the SHELLS `fish`, `zsh`,
-`sh`, `bash` and `PowerShell` (tested so far)
+`sh`, `bash` and `Windows Terminal Preview` (tested so far)
 
 GitManager some features:
 - friendly user interface
 - easy use
 - multi platform (OSX, Linux, Docker, Windows, WSL2)
-- multi compatibility with shells (bash, zsh, fish, PowerShell, sh, etc.)
-- easy integration (keybind working full on prompt with zsh and PowerShell)
-- easy alias integration (zsh, fish, bash, PowerShell etc.)
-- bindkey for `zsh` and `powershell`
+- multi compatibility with shells (bash, zsh, fish, Windows Terminal Preview, sh, etc.)
+- easy integration (keybind working full on prompt with zsh and Windows Terminal Preview)
+- easy alias integration (zsh, fish, bash, Windows Terminal Preview etc.)
+- bindkey for `zsh` and `Windows Terminal Preview`
 - completely intuitive interface
 - status bar and custom prompt with current branch
 - color feedback
@@ -181,7 +181,7 @@ echo "$(echo "alias push='sh $PWD/gm.sh'" >> ~/.bashrc)"
 echo "$(echo "alias push "$PWD/gm.sh"" >> ~/.config/fish/config.fish)"
 ```
 
-- For powershell
+- For Windows Terminal Preview
 ```powershell
 set-alias push "C:\Users\home\gm\bin\gm.sh"
 ```
@@ -197,16 +197,16 @@ with the key combination `CTRL+p` or `CTRL+g` here are some examples.
   bindkey -s '^g' 'gm \n'
 ```
 
-- For powershell
+- For Windows Terminal Preview
 You can add this line to your `$PROFILE` to invoke GitManager
 with the key combination `CTRL+p`.
 
-For a better integration in powershell, you can add the following lines,
+For a better integration in Windows Terminal Preview, you can add the following lines,
 for this it is necessary to have the [PSReadLine][readline]
 module installed.
 
 In this way, you can invoke GitManager with the following key combinations:
-`CTRL+p` when you are at the prompt using powershell
+`CTRL+p` when you are at the prompt using Windows Terminal Preview
 and at the same time when you are in a github or gitlab repository.
 
 ```powershell
