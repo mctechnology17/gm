@@ -1,5 +1,5 @@
 # ====================================================
-# FileName: gm
+# FileName: gm.sh
 # Author: Marcos Chow Castro <mctechnology170318@gmail.com>
 # GitHub: https://github.com/mctechnology17
 # Date: 11.12.2021 00:30
@@ -55,7 +55,7 @@ END
 usage (){
 cat <<END
   Usage:
-    ./gm              -> simple use
+    ./gm.sh              -> simple use
     gm                -> as command line
     push              -> if you assigned the alias
     CTRL+p or CTRL+g  -> when you are at the prompt, if the bindkey is activated for zsh or powershell
@@ -352,13 +352,13 @@ elif [ "$git_continue" = "cmd" ]; then # cmd {{{
   printf "$git_branche_prompt ->${NO_COLOR} "
   read -r git_alias
   if [ "$git_alias" = "z" ]; then
-    echo "Add alias to ~/.zshrc $(echo "alias push='sh $PWD/gm'" >> ~/.zshrc)"
+    echo "Add alias to ~/.zshrc $(echo "alias push='sh $PWD/gm.sh'" >> ~/.zshrc)"
   elif [ "$git_alias" = "b" ]; then
-    echo "Add alias to ~/.bashrc $(echo "alias push='sh $PWD/gm'" >> ~/.bashrc)"
+    echo "Add alias to ~/.bashrc $(echo "alias push='sh $PWD/gm.sh'" >> ~/.bashrc)"
   elif [ "$git_alias" = "f" ]; then
-    echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/gm"" >> ~/.config/fish/config.fish)"
+    echo "Add alias to ~/.config/fish/config.fish $(echo "alias push "$PWD/gm.sh"" >> ~/.config/fish/config.fish)"
   elif [ "$git_alias" = "c" ]; then
-    ln -sf ${PWD}/gm /usr/local/bin/gm
+    ln -sf ${PWD}/gm.sh /usr/local/bin/gm
   else
     echo "${YELLOW}No change made!${NO_COLOR}"
     exit 1
